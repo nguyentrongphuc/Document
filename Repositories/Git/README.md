@@ -64,7 +64,7 @@
     git mergetool
 
 # References
-Git official docs - https://git-scm.com/doc
-Git workflow - https://www.atlassian.com/git/tutorials/comparing-workflows
-Pull request - https://help.github.com/articles/using-pull-requests/
-Git cheatsheet - git-cheatsheet-EN-white.pdf (https://www.git-tower.com/blog/git-cheat-sheet/)
+    *Git official docs - https://git-scm.com/doc
+    *Git workflow - https://www.atlassian.com/git/tutorials/comparing-workflows
+    *Pull request - https://help.github.com/articles/using-pull-requests/
+    *Git cheatsheet - git-cheatsheet-EN-white.pdf (https://www.git-tower.com/blog/git-cheat-sheet/)
