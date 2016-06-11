@@ -4,15 +4,15 @@
     git clone <url>
 
 ## Create branch
-    *Create local branch*
+    *Create local branch:*
         git checkout -b <branch_name>
 
-    *Push local branch to server*
+    *Push local branch to server:*
         git push -u origin <branch_name>
 ## State files
-    *State a new file*
+    *State a new file:*
         git add <file name>
-    *State all the files*
+    *State all the files:*
         git add .
 
 ## Commit files
