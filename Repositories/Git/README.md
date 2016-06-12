@@ -26,6 +26,7 @@
     *example*
     remove 3 files: git rm --cached file1.txt file2.txt file3.txt
     remove folder: git rm --cached foldername
+    remove folder with recursively: git rm --cache foldername -r
     make sure run git commit -m 'comments..' & git push after that
 ## Push committed files
     git push
