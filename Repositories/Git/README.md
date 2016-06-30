@@ -14,6 +14,13 @@
         git add <file name>
     *State all the files:*
         git add .
+    *Adds content from all *.txt files under Documentation directory and its subdirectories:*
+        git add Documentation/\*.txt
+        Note that the asterisk * is quoted from the shell in this example; this lets the command include the files from subdirectories of Documentation/ directory.
+
+    *Considers adding content from all git-*.sh scripts:*
+        git add git-*.sh
+
 
 ## Commit files
     git commit -m "Example commit message"
