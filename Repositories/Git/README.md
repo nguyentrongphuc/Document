@@ -71,6 +71,56 @@
 ## Resolve merge conflicts with tool
     git mergetool
 
+## gitignore
+    1. Create .gitignore file in your working directory
+    2. copy text below into the file
+        #OS junk files
+        [Tt]humbs.db
+        *.DS_Store
+
+        #Visual Studio files
+        *.[Oo]bj
+        *.user
+        *.aps
+        *.pch
+        *.vspscc
+        *.vssscc
+        *_i.c
+        *_p.c
+        *.ncb
+        *.suo
+        *.tlb
+        *.tlh
+        *.bak
+        *.[Cc]ache
+        *.ilk
+        *.log
+        *.lib
+        *.sbr
+        *.sdf
+        ipch/
+        obj/
+        [Bb]in
+        [Dd]ebug*/
+        [Rr]elease*/
+        Ankh.NoLoad
+        Tracotour/node_modules/
+
+        #Tooling
+        _ReSharper*/
+        *.resharper
+        [Tt]est[Rr]esult*
+
+        #Project files
+        [Bb]uild/
+
+        #Subversion files
+        .svn
+
+        # Office Temp Files
+        ~$*
+
+
 # References
     *Git official docs - https://git-scm.com/doc
     *Git workflow - https://www.atlassian.com/git/tutorials/comparing-workflows
