@@ -49,7 +49,9 @@
 
 ## Merge pull request
     https://help.github.com/articles/merging-a-pull-request/
-
+## See list of remote branches
+    git branch -a
+    git branch -all
 ## Delete local branch
     git branch -d <branch name>
 ## Revert a file
@@ -62,8 +64,6 @@
     git commit --amend -m "<new message>"
 ## View commit log
     git log
-## See list of remote branches
-    git branch -a
 ## Change to another branch (equivalent to "Update" action in Mercurial)
     git checkout <branch name>
 ## Back out of a merge ???
