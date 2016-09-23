@@ -52,12 +52,19 @@
 ## See list of remote branches
     git branch -a
     git branch -all
+
 ## Delete local branch
     git branch -d <branch name>
+
 ## Revert a file
     git checkout -- <file name>
+
 ## Unstage a file
     git reset HEAD <file name>
+
+## Remove untracked files
+    git clean -f -x
+
 ## Undo a commit
     git reset --soft HEAD^
 ## Edit last commit message
