@@ -1,6 +1,6 @@
 # FTP commands
 
-# STEPS TO CONNECT FTP
+# Steps to connect ftp by commands
     *Step1:*
         Launch command prompt and move to the directory where all your files are located. Because this is the place from which you can move your files to server and download it on the same folder
     *Step2:*
