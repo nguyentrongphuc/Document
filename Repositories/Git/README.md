@@ -9,6 +9,10 @@
 
     *Push local branch to server:*
         git push -u origin <branch_name>
+
+## Checkout remote branch
+    git refix=false -c core.quotepath=false checkout -b <branch_name> --track origin/<branch_name>
+
 ## State files
     *State a new file:*
         git add <file name>
