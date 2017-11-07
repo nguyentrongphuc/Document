@@ -83,7 +83,10 @@
     git mergetool
 ## Stash files
     git -c diff.mnemonicprefix=false -c core.quotepath=false stash save phuclocal
-    
+## apply Stash files on a branch
+    git -c diff.mnemonicprefix=false -c core.quotepath=false stash apply stash@{0}
+
+
 ## gitignore
     1. Create .gitignore file in your working directory
     2. copy text below into the file (just example)
