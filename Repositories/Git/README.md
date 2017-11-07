@@ -64,7 +64,8 @@
     git checkout -- <file name>
 
 ## Unstage a file
-    git reset HEAD <file name>
+    git reset HEAD -- <file name>
+    git checkout HEAD -- <file name>
 
 ## Remove untracked files
     git clean -f -x
@@ -73,19 +74,26 @@
     git reset --soft HEAD^
 ## Edit last commit message
     git commit --amend -m "<new message>"
+    
 ## View commit log
     git log
+    
 ## Change to another branch (equivalent to "Update" action in Mercurial)
     git checkout <branch name>
+    
 ## Back out of a merge ???
     git reset --merge ORIG_HEAD
+    
 ## Resolve merge conflicts with tool
     git mergetool
+    
 ## Stash files
+    git stash list [<options>]
+    git stash show [<stash>]
+    git stash drop [-q|--quiet] [<stash>]
+    git stash ( pop | apply ) [--index] [-q|--quiet] [<stash>]
     git -c diff.mnemonicprefix=false -c core.quotepath=false stash save phuclocal
-## apply Stash files on a branch
     git -c diff.mnemonicprefix=false -c core.quotepath=false stash apply stash@{0}
-
 
 ## gitignore
     1. Create .gitignore file in your working directory
