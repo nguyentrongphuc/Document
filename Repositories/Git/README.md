@@ -81,7 +81,9 @@
     git reset --merge ORIG_HEAD
 ## Resolve merge conflicts with tool
     git mergetool
-
+## Stash files
+    git -c diff.mnemonicprefix=false -c core.quotepath=false stash save phuclocal
+    
 ## gitignore
     1. Create .gitignore file in your working directory
     2. copy text below into the file (just example)
