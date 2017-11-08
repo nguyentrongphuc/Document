@@ -82,7 +82,15 @@
     git stash ( pop | apply ) [--index] [-q|--quiet] [<stash>]
     git -c diff.mnemonicprefix=false -c core.quotepath=false stash save phuclocal
     git -c diff.mnemonicprefix=false -c core.quotepath=false stash apply stash@{0}
+    
+## config mergetool global
+	git config --global --add merge.tool kdiff3
+	git config --global --add mergetool.kdiff3.path "C:/Program Files/KDiff3/kdiff3.exe"
+	git config --global --add mergetool.kdiff3.trustExitCode false
 
+	git config --global --add diff.guitool kdiff3
+	git config --global --add difftool.kdiff3.path "C:/Program Files/KDiff3/kdiff3.exe"
+	git config --global --add difftool.kdiff3.trustExitCode false
 ## gitignore
     1. Create .gitignore file in your working directory
     2. copy text below into the file (just example)
