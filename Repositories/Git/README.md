@@ -11,7 +11,9 @@
     
     Checkout remote branch: git checkout -b <branch_name> --track origin/<branch_name>
     Change to another local branch: git checkout <branch name>
-
+## GitK
+    Use gitk to open external tools to review the changes, histories, ...
+    
 ## State files
     *State a new file:*
         git add <file name>
