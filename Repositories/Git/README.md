@@ -3,12 +3,14 @@
 ## Clone repository
     git clone <url>
 
-## branches
+## Branches
     list all branch: git branch -a
     delete local branch: git branch -d <branch name>
     Create local branch: git checkout -b <branch_name>
     Push local branch to server: git push -u origin <branch_name>
+    
     Checkout remote branch: git checkout -b <branch_name> --track origin/<branch_name>
+    Change to another local branch: git checkout <branch name>
 
 ## State files
     *State a new file:*
@@ -67,9 +69,6 @@
     
 ## View commit log
     git log
-    
-## Change to another branch (equivalent to "Update" action in Mercurial)
-    git checkout <branch name>
     
 ## Back out of a merge ???
     git reset --merge ORIG_HEAD
