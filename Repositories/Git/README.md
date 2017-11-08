@@ -3,15 +3,12 @@
 ## Clone repository
     git clone <url>
 
-## Create branch
-    *Create local branch:*
-        git checkout -b <branch_name>
-
-    *Push local branch to server:*
-        git push -u origin <branch_name>
-
-## Checkout remote branch
-    git refix=false -c core.quotepath=false checkout -b <branch_name> --track origin/<branch_name>
+## branches
+    list all branch: git branch -a
+    delete local branch: git branch -d <branch name>
+    Create local branch: git checkout -b <branch_name>
+    Push local branch to server: git push -u origin <branch_name>
+    Checkout remote branch: git checkout -b <branch_name> --track origin/<branch_name>
 
 ## State files
     *State a new file:*
@@ -48,17 +45,9 @@
 ## Merge in changes from other branch (e.g. merge from master)
     git pull origin master --no-edit
 
-## Open a pull request on GitHub
+## pull request on GitHub
     https://help.github.com/articles/creating-a-pull-request/
-
-## Merge pull request
     https://help.github.com/articles/merging-a-pull-request/
-## See list of remote branches
-    git branch -a
-    git branch -all
-
-## Delete local branch
-    git branch -d <branch name>
 
 ## Revert a file
     git checkout -- <file name>
@@ -72,6 +61,7 @@
 
 ## Undo a commit
     git reset --soft HEAD^
+    
 ## Edit last commit message
     git commit --amend -m "<new message>"
     
