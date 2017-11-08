@@ -63,7 +63,12 @@
     git pull --no-edit
 
 ## Merge in changes from other branch (e.g. merge from master)
-    git pull origin master --no-edit
+	  A---B---C topic ==> your current branch
+	 /
+    D---E---F---G master
+    
+    $ git fetch
+    $ git merge origin/master
 
 ## Pull request on GitHub
     https://help.github.com/articles/creating-a-pull-request/
