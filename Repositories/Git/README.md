@@ -21,53 +21,34 @@
         git add .
     *Adds content from all *.txt files under Documentation directory and its subdirectories:*
         git add Documentation/\*.txt
-        Note that the asterisk * is quoted from the shell in this example; this lets the command include the files from subdirectories of Documentation/ directory.
-
+        Note that the asterisk * is quoted from the shell in this example; 
+        this lets the command include the files from subdirectories.
     *Considers adding content from all git-*.sh scripts:*
         git add git-*.sh
-
-
-## Commit files
-    git commit -m "Example commit message"
-
-## Rename a file
-    git mv file-one.html file1.html
-
-## Deleting files
-    git rm <file name>
-    *example*
-    remove 3 files: git rm --cached file1.txt file2.txt file3.txt
-    remove folder: git rm --cached foldername
-    remove folder with recursively: git rm --cache foldername -r
-    make sure run git commit -m 'comments..' & git push after that
-## Push committed files
-    git push
-
-## Merge in changes in the same branch
-    git pull --no-edit
-
-## Merge in changes from other branch (e.g. merge from master)
-    git pull origin master --no-edit
-
-## pull request on GitHub
-    https://help.github.com/articles/creating-a-pull-request/
-    https://help.github.com/articles/merging-a-pull-request/
-
-## Revert a file
-    git checkout -- <file name>
-
-## Unstage a file
-    git reset HEAD -- <file name>
-    git checkout HEAD -- <file name>
-
-## Remove untracked files
-    git clean -f -x
-
-## Undo a commit
-    git reset --soft HEAD^
-    
-## Edit last commit message
-    git commit --amend -m "<new message>"
+    *Commit files*
+        git commit -m "Example commit message"
+    *Rename a file*
+        git mv file-one.html file1.html
+    *Deleting files*
+        git rm <file name>
+        *example*
+        remove 3 files: git rm --cached file1.txt file2.txt file3.txt
+        remove folder: git rm --cached foldername
+        remove folder with recursively: git rm --cache foldername -r
+        make sure run git commit -m 'comments..' & git push after that
+    *Push committed files*
+        git push
+    *Revert a file*
+        git checkout -- <file name>
+    *Unstage a file*
+        git reset HEAD -- <file name>
+        git checkout HEAD -- <file name>
+    *Remove untracked files*
+        git clean -f -x
+    *Undo a commit*
+        git reset --soft HEAD^
+    *Edit last commit message*
+        git commit --amend -m "<new message>"
     
 ## View commit log
     git log
@@ -77,6 +58,17 @@
     
 ## Resolve merge conflicts with tool
     git mergetool
+    
+## Merge in changes in the same branch
+    git pull --no-edit
+
+## Merge in changes from other branch (e.g. merge from master)
+    git pull origin master --no-edit
+
+## Pull request on GitHub
+    https://help.github.com/articles/creating-a-pull-request/
+    https://help.github.com/articles/merging-a-pull-request/
+
     
 ## Stash files
     git stash list [<options>]
