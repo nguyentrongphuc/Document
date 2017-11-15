@@ -59,10 +59,11 @@
 ## Resolve merge conflicts with tool
     git mergetool
     
-## Merge in changes in the same branch
-    git pull --no-edit
+## Fetch & Pull
+    git fetch origin
+    git pull --no-commit --rebase origin develop
 
-## Merge in changes from other branch (e.g. merge from master)
+## Merge changes from other branch (e.g. merge from master)
 	  A---B---C topic ==> your current branch
 	 /
     D---E---F---G master
