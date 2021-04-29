@@ -70,6 +70,12 @@
     
     $ git fetch
     $ git merge origin/master
+    
+    press "i" (i for insert)
+    write your merge message.
+    press "esc" (escape)
+    write ":wq" (write & quit)
+    then press enter.
 
 ## Pull request on GitHub
     https://help.github.com/articles/creating-a-pull-request/
