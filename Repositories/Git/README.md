@@ -38,6 +38,7 @@
         make sure run git commit -m 'comments..' & git push after that
     *Push committed files*
         git push
+        git push origin --force +master:staging  (Force master-> staging)
     *Revert a file*
         git checkout -- <file name>
     *Unstage a file*
