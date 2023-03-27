@@ -4,7 +4,7 @@
     psql <dbname> --username=postgres
 
 ## Useful basic psql commands
-    `psql <dbname> [<username>]` Starts psql with a connection to dbname. Optionally use another user than current user
+    `psql <dbname> [<username>]` : Starts psql with a connection to dbname. Optionally use another user than current user
 
     in psql:
 
