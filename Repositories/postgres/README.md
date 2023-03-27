@@ -21,13 +21,17 @@
 
 ### table
 `create table table1( id INTEGER PRIMARY KEY, description VARCHAR NOT NULL);` create table
+
 `insert into table1(id, description) VALUES (1, 'this is a thing');` insert data into table
+
 `select * from table1` query data from table
 
- id |   description   
-----+-----------------
-  1 | this is a thing
-(1 row)
+>```php
+> id |   description   
+>----+-----------------
+>  1 | this is a thing
+> (1 row)
+>```
 
 # References
     Doc: https://gist.github.com/ibraheem4/ce5ccd3e4d7a65589ce84f2a3b7c23a3
