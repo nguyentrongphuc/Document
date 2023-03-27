@@ -8,10 +8,15 @@
 
 ### in psql:
 `# \l` List all databases on the server, their owners, and user access levels
+
 `# \c <dbname>` Connect to a database named
+
 `# \dt` Show database tables
+
 `# \d <tablename>` Describe table schema
+
 `# \q` Quit psql, return to the terminal
+
 `# \?` Get help, see list of available commands
 
 # References
