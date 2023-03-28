@@ -35,15 +35,15 @@
 
 # psycopg2 commands
 
+Establish a connection, starting a session, begins a transaction
 >```python 
 > psycopg2.connect('...')
 >```
-Establish a connection, starting a session, begins a transaction
 
+Sets a cursor to begin executing commands
 >```python 
 > cursor = connection.cursor()
 >```
-Sets a cursor to begin executing commands
 
 >```python 
 > cursor.execute(<sql command string>)
