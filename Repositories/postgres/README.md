@@ -53,26 +53,23 @@ Sets a cursor to begin executing commands
 > cursor.execute('SELECT * from table2;')
 > result = cursor.fetchall()
 > print(result)
-
-> cursor.execute("INSERT INTO table2 (id, description) VALUES (%s,%s);' (3,True))
-
+> 
+> cursor.execute('INSERT INTO table2 (id, completed) VALUES (%s, %s);', (1, True))
+> # Example insert with data parameters
 > SQL = 'INSERT INTO table2 (id, completed) VALUES (%(id)s, %(completed)s);'
-
 > data = {
 >   'id': 2,
 >   'completed': False
 > }
 > cursor.execute(SQL, data)
-
 > cursor.execute('SELECT * from table2;')
 > result2 = cursor.fetchone()
 > print('fetchone ' , result2)
 > result = cursor.fetchmany(2)
 > print('fetchmany ' , result2)
->
+> 
 > result3 = cursor.fetchone()
 > print('fetchone ' , result3)
-
 >```
 
 # References
