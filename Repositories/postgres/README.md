@@ -33,6 +33,49 @@
 > (1 row)
 >```
 
+# psycopg2 commands
+
+>```python 
+> psycopg2.connect('...')
+>```
+Establish a connection, starting a session, begins a transaction
+
+>```python 
+> cursor = connection.cursor()
+>```
+Sets a cursor to begin executing commands
+
+>```python 
+> cursor.execute(<sql command string>)
+> cursor.commit()
+> cursor.rollback()
+> # Example
+> cursor.execute('SELECT * from table2;')
+> result = cursor.fetchall()
+> print(result)
+
+> cursor.execute("INSERT INTO table2 (id, description) VALUES (%s,%s);' (3,True))
+
+> SQL = 'INSERT INTO table2 (id, completed) VALUES (%(id)s, %(completed)s);'
+
+> data = {
+>   'id': 2,
+>   'completed': False
+> }
+> cursor.execute(SQL, data)
+
+> cursor.execute('SELECT * from table2;')
+> result2 = cursor.fetchone()
+> print('fetchone ' , result2)
+> result = cursor.fetchmany(2)
+> print('fetchmany ' , result2)
+>
+> result3 = cursor.fetchone()
+> print('fetchone ' , result3)
+
+>```
+
 # References
     Doc: https://gist.github.com/ibraheem4/ce5ccd3e4d7a65589ce84f2a3b7c23a3
     https://www.youtube.com/watch?v=1uK8RjZr8Bg&t=361s
+
