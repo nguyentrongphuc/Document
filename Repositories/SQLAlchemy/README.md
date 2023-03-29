@@ -129,6 +129,14 @@ Moreover,
 >    return 'Hello World!'
 >```
 
+#### Takeaways
+- Given an instance of the SQLAlchemy class from Flask-SQLAlchemy,
+`db = SQLAlchemy(app)`
+
++ `db` is an interface for interacting with our database
++ `db.Model` lets us create and manipulate data models
++ `db.session` lets us create and manipulate database transactions
+
 # References
 - SQL Expressions: https://www.youtube.com/watch?v=HBH0b5n7bpU&t=108s
 - Mapping between Tables and Classes: https://www.youtube.com/watch?v=CF_tkEnIv44&t=128s
