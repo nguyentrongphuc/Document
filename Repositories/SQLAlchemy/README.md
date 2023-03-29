@@ -17,7 +17,7 @@
 5. SQL Expressions
 6. SQLAlchemy ORM (optional)
 
-![image](images/sqla.png)
+![image](images/sqlalchemy-layers-of-abstraction.png)
 
 ## Engine:
 ### Takeaways The Engine
