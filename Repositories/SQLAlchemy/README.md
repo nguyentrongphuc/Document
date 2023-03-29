@@ -73,7 +73,7 @@ Moreover,
 >```
 
 ## ORM
-
+![image](images/pysql.png)
 
 Sets a cursor to begin executing commands
 >```python 
@@ -81,6 +81,6 @@ Sets a cursor to begin executing commands
 >```
 
 # References
-    https://www.youtube.com/watch?v=HBH0b5n7bpU&t=108s
-
+- SQL Expressions: https://www.youtube.com/watch?v=HBH0b5n7bpU&t=108s
+- Mapping between Tables and Classes: https://www.youtube.com/watch?v=CF_tkEnIv44&t=128s
 
