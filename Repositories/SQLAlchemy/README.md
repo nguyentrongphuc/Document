@@ -17,7 +17,7 @@
 5. SQL Expressions
 6. SQLAlchemy ORM (optional)
 
-![image][images/sqla.png]
+![system schema](images/sqla.png)
 
 ### in psql:
 `# \l` List all databases on the server, their owners, and user access levels
