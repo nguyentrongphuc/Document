@@ -75,10 +75,38 @@ Moreover,
 ## ORM
 ![image](images/pysql.png)
 
-Sets a cursor to begin executing commands
+## Flask and SQLAlchemy
+- Flask is a Python library that offers a very simple web framework for serving web pages with data. By installing Flask, we can use Flask in a Python script is using from Flask importing a Flask class, and then use that Flask class to start creating Flask applications.
+- The second library that we're using is called Flask SQL Alchemy. Flask SQL Alchemy is a Flask extension that supports the use of SQL Alchemy underneath.
+- You can install Flask SQL Alchemy using pip3 or pip if you haven't linked to pip3
 >```python 
-> cursor = connection.cursor()
+> pip3 install flask
+> pip3 install flask-sqlalchemy
 >```
+
+### Create web-app with Flask
+
+- Create file: flask-hello-app.py 
+>```python 
+> from flask import Flask
+>
+> app = Flask(__name__)
+> @app.route('/')
+> def index():
+>    return 'Hello World!'
+>```
+
+- Start the webapp by open Terminal and run:
+>```terminal 
+> FLASK_APP=flask-hello-app.py flask run
+> * Serving Flask app 'flask-hello-app.py'
+> * Debug mode: off
+> WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+> * Running on http://127.0.0.1:5000
+>```
+
+- Copy and paste the link `http://127.0.0.1:5000` to browser to see the web-application
+
 
 # References
 - SQL Expressions: https://www.youtube.com/watch?v=HBH0b5n7bpU&t=108s
