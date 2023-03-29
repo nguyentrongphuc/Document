@@ -101,14 +101,36 @@ Moreover,
 > FLASK_APP=flask-hello-app.py flask run
 > * Serving Flask app 'flask-hello-app.py'
 > * Debug mode: off
-> WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+> WARNING: This is a development server. Do not use it in a production deployment. 
+> Use a production WSGI server instead.
 > * Running on http://127.0.0.1:5000
 >```
 
-- Copy and paste the link `http://127.0.0.1:5000` to browser to see the web-application
+- Copy and paste the link `http://127.0.0.1:5000` or `localhost:5000` to browser to see the web-application
 
+- We run a flask app defined at app.py by running this line of code on one line
+    + `FLASK_APP=app.py FLASK_DEBUG=true flask run`
+    + `FLASK_APP` must be set to the server file path with an equal sign in between. No spaces. FLASK_APP = app.py will not work.
+    + `FLASK_DEBUG=true` will enable debug mode which allows live reload
+    + `flask run` actually executes the flask server code in the app.py file
+### Connect DB
+![image](images/database-connection-uri-parts.png)
+
+>```python 
+> from flask import Flask
+> from flask_sqlalchemy import SQLAlchemy
+>
+> app = Flask(__name__)
+> app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:P@ssw0rd@localhost:5432/snowflake'
+> db = SQLAlchemy(app)
+> 
+> @app.route('/')
+> def index():
+>    return 'Hello World!'
+>```
 
 # References
 - SQL Expressions: https://www.youtube.com/watch?v=HBH0b5n7bpU&t=108s
 - Mapping between Tables and Classes: https://www.youtube.com/watch?v=CF_tkEnIv44&t=128s
+- Flask: https://www.youtube.com/watch?v=YbJKcTt_Gd8&t=234s
 
