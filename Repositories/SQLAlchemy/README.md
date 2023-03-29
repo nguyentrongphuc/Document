@@ -121,9 +121,19 @@ Moreover,
 > from flask_sqlalchemy import SQLAlchemy
 >
 > app = Flask(__name__)
-> app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:P@ssw0rd@localhost:5432/snowflake'
+> app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:P%40ssw0rd@localhost:5432/snowflake' # The password contains "@", you can escape the "@" character using "%40" instead.
 > db = SQLAlchemy(app)
 > 
+> class Person(db.Model):
+>   __tablename__ = 'persons'
+>   id = db.Column(db.Integer, primary_key=True)
+>   name = db.Column(db.String(), nullable=False)
+>
+> # As of Flask-SQLAlchemy 3.0, all access to db.engine (and db.session) requires an active Flask application context. 
+> # db.create_all uses db.engine, so it requires an app context.
+> with app.app_context():
+>    db.create_all()
+>
 > @app.route('/')
 > def index():
 >    return 'Hello World!'
