@@ -16,7 +16,8 @@
 4. The Engine
 5. SQL Expressions
 6. SQLAlchemy ORM (optional)
-![][images/sqla.png]
+
+![image][images/sqla.png]
 
 ### in psql:
 `# \l` List all databases on the server, their owners, and user access levels
