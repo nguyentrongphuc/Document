@@ -19,16 +19,61 @@
 
 ![image](images/sqla.png)
 
-### in psql:
-`# \l` List all databases on the server, their owners, and user access levels
+## Engine:
+### Takeaways The Engine
+- 1 of 3 main layers for how you may choose to interact with the database.
+- Is the lowest level layer of interacting with the database, and is much like using the DBAPI directly. Very similar to using psycopg2, managing a connection directly.
 
+Moreover,
+- The Engine in SQLAlchemy refers to both itself, the Dialect and the Connection Pool, which all work together to interface with our database.
+- A connection pool gets automatically created when we create an SQLAlchemy engine.
 
-# psycopg2 commands
-
-Establish a connection, starting a session, begins a transaction
 >```python 
-> psycopg2.connect('...')
+> from snowflake.sqlalchemy import URL
+> from sqlalchemy import create_engine
+> from sqlalchemy.dialects import registry
+>
+> engine = create_engine(URL(
+>       account=snowflake.account,
+>       authenticator=snowflake.authenticator,
+>       user=user,
+>       password=password,
+>       database=database,
+>       schema=schema,
+>       warehouse=warehouse,
+>       role=role
+>   ))
+> con = engine.connect()
+> result = con.execute(f'Select * ...')
+> row = result.fetchone()
+> row = result.fatchall()
+> 
+> con.close()
 >```
+
+## SQL Expressions
+### Takeaways
+- Instead of sending raw SQL (using the Engine), we can compose python objects to compose SQL expressions, instead.
+- SQL Expressions still involves using and knowing SQL to interact with the database.
+
+>```python 
+> todos = Table('todos', ...)
+> ins = todos.insert().values(
+>   description = 'Clean my room',
+>   completed = False
+> )
+> s = select([todos])
+> conn = engine.connect()
+> result = engine.execute(ins)
+> result = conn.execute(s)
+>
+> result.close()
+>
+> todos.c.description # <Column description in todos table>
+>```
+
+## ORM
+
 
 Sets a cursor to begin executing commands
 >```python 
@@ -36,6 +81,6 @@ Sets a cursor to begin executing commands
 >```
 
 # References
-    Doc: https://gist.github.com/ibraheem4/ce5ccd3e4d7a65589ce84f2a3b7c23a3
-    https://www.youtube.com/watch?v=1uK8RjZr8Bg&t=361s
+    https://www.youtube.com/watch?v=HBH0b5n7bpU&t=108s
+
 
