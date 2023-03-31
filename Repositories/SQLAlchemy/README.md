@@ -143,10 +143,11 @@ Moreover,
 - Use python3 from terminal to import the library
 
 >```Terminal 
-> from flask_hello_app import Person
-> Person.query.first()
+> python3
+> >>> from flask_hello_app import Person
+> >>> Person.query.first()
 >
-> Person.query.first().name
+> >>> Person.query.first().name
 >```
 
 ![image](images/python3_script.png)
