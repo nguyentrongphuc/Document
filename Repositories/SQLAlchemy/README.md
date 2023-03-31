@@ -149,11 +149,11 @@ Moreover,
 
 ## Experimenting in Interactive Mode (python3)
 Use python3 from terminal to import the library
-- [x] Rename your app from `flask-hello-app.py` to `flask_hello_app.py` (replace the dashes with underscores, so that we can import it with Python)
-- [x] Go to terminal and enter Python interactive mode by entering `python3`
-- [x] Import the app by running `import flask_hello_app` (notice that there is no `.py` at the end when we are importing.)
-- [x] If you get the deprecation warning, modify the app to set `app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False`
-- [x] Try importing again - you should now get a successful import with no errors or warnings
+- [ ] Rename your app from `flask-hello-app.py` to `flask_hello_app.py` (replace the dashes with underscores, so that we can import it with Python)
+- [ ] Go to terminal and enter Python interactive mode by entering `python3`
+- [ ] Import the app by running `import flask_hello_app` (notice that there is no `.py` at the end when we are importing.)
+- [ ] If you get the deprecation warning, modify the app to set `app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False`
+- [ ] Try importing again - you should now get a successful import with no errors or warnings
 
 >```Terminal 
 > $ python3
@@ -164,12 +164,48 @@ Use python3 from terminal to import the library
 > >>> query.first()
 > >>> query.all()
 > >>> Person.query.first().name
+>
+> # Other sample
+> person1 = Person(name='New Person 1')
+> person2 = Person(name='New Person 2')
+> db.session.add_all([person1],[person2])
+> db.session.commit()
 >```
 
 ![image](images/python3_script.png)
+
+## Model.query
+- query
+    + `MyModel.query.all()`
+    + `MyModel.query.first()`
+- Filtering
+    + `MyModel.query.filter_by(my_table_attribute='some value')`
+    + `MyModel.query.filter(MyOtherModel.some_attr='some value')`
+    + `OrderItem.query.filter(Product.id=3)`
+- Ordering
+    + `MyModel.order_by(MyModel.created_at)`
+    + `MyModel.order_by(db.desc(MyModel.created_at))`
+- Limit
+    + `Order.query.limit(100).all()`
+- Aggregates
+    + count: 
+        + `query = Task.query.filter(completed=True)`
+        + `query.count()`
+    + get
+        + `model_id = 3`
+        + `MyModel.query.get(model_id)`
+- Bulk Deletes
+    + `query = Task.query.filter_by(category='Archived')`
+    + `query.delete()`
+- Join
+    + `Driver.query.join('vehicles')`
+
+## Object Lifecycle
+![image](images/object_lifecycle.png)    
 
 # References
 - SQL Expressions: https://www.youtube.com/watch?v=HBH0b5n7bpU&t=108s
 - Mapping between Tables and Classes: https://www.youtube.com/watch?v=CF_tkEnIv44&t=128s
 - Flask: https://www.youtube.com/watch?v=YbJKcTt_Gd8&t=234s
-
+- Declaring Models: https://flask-sqlalchemy.palletsprojects.com/en/2.x/models/
+- Summary: https://www.youtube.com/watch?v=mueAE7foF7o&t=81s
