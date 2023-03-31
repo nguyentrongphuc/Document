@@ -139,14 +139,22 @@ Moreover,
 >    return 'Hello World!'
 >```
 
-#### python3
-- Use python3 from terminal to import the library
+#### Experimenting in Interactive Mode (python3)
+Use python3 from terminal to import the library
+[x] Rename your app from `flask-hello-app.py` to `flask_hello_app.py` (replace the dashes with underscores, so that we can import it with Python)
+[x] Go to terminal and enter Python interactive mode by entering `python3`
+[x] Import the app by running `import flask_hello_app` (notice that there is no `.py` at the end when we are importing.)
+[x] If you get the deprecation warning, modify the app to set `app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False`
+[x] Try importing again - you should now get a successful import with no errors or warnings
 
 >```Terminal 
-> python3
-> >>> from flask_hello_app import Person
+> $ python3
+> >>> from flask_hello_app import Person, db
+> >>> Person.query.all()
 > >>> Person.query.first()
->
+> >>> query = Person.query.filter(Person.name == 'Amy')
+> >>> query.first()
+> >>> query.all()
 > >>> Person.query.first().name
 >```
 
