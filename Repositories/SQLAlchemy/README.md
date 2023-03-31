@@ -139,6 +139,18 @@ Moreover,
 >    return 'Hello World!'
 >```
 
+#### python3
+- Use python3 from terminal to import the library
+
+>```Terminal 
+> from flask_hello_app import Person
+> Person.query.first()
+>
+> Person.query.first().name
+>```
+
+![image](images/python3_script.png)
+
 #### Takeaways
 - Given an instance of the SQLAlchemy class from Flask-SQLAlchemy,
 `db = SQLAlchemy(app)`
