@@ -139,13 +139,21 @@ Moreover,
 >    return 'Hello World!'
 >```
 
-#### Experimenting in Interactive Mode (python3)
+#### Takeaways
+- Given an instance of the SQLAlchemy class from Flask-SQLAlchemy,
+`db = SQLAlchemy(app)`
+
++ `db` is an interface for interacting with our database
++ `db.Model` lets us create and manipulate data models
++ `db.session` lets us create and manipulate database transactions
+
+## Experimenting in Interactive Mode (python3)
 Use python3 from terminal to import the library
-[x] Rename your app from `flask-hello-app.py` to `flask_hello_app.py` (replace the dashes with underscores, so that we can import it with Python)
-[x] Go to terminal and enter Python interactive mode by entering `python3`
-[x] Import the app by running `import flask_hello_app` (notice that there is no `.py` at the end when we are importing.)
-[x] If you get the deprecation warning, modify the app to set `app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False`
-[x] Try importing again - you should now get a successful import with no errors or warnings
+- [x] Rename your app from `flask-hello-app.py` to `flask_hello_app.py` (replace the dashes with underscores, so that we can import it with Python)
+- [x] Go to terminal and enter Python interactive mode by entering `python3`
+- [x] Import the app by running `import flask_hello_app` (notice that there is no `.py` at the end when we are importing.)
+- [x] If you get the deprecation warning, modify the app to set `app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False`
+- [x] Try importing again - you should now get a successful import with no errors or warnings
 
 >```Terminal 
 > $ python3
@@ -159,14 +167,6 @@ Use python3 from terminal to import the library
 >```
 
 ![image](images/python3_script.png)
-
-#### Takeaways
-- Given an instance of the SQLAlchemy class from Flask-SQLAlchemy,
-`db = SQLAlchemy(app)`
-
-+ `db` is an interface for interacting with our database
-+ `db.Model` lets us create and manipulate data models
-+ `db.session` lets us create and manipulate database transactions
 
 # References
 - SQL Expressions: https://www.youtube.com/watch?v=HBH0b5n7bpU&t=108s
