@@ -203,6 +203,37 @@ Use python3 from terminal to import the library
 ## Object Lifecycle
 ![image](images/object_lifecycle.png)    
 
+## db.relationship
+![image](images/db_relationship.png)
+
+### Lazy loading vs. Eager loading
+- https://www.youtube.com/watch?v=oq-Wqp_BSps
+
+#### Lazy loading
+Load needed joined data only as needed. Default in SQLAlchemy.
+- Pro: no initial wait time. Load only what you need.
+- Con: produces a join SQL call every time there is a request for a joined asset. Bad if you do this a lot.
+
+#### Eager loading
+Load all needed joined data objects, all at once.
+
+- Pro: reduces further queries to the database. Subsequent SQL calls read existing data
+- Con: loading the joined table has a long upfront initial load time.
+
+`lazy=True` (lazy loading) is the default option in `db.relationship`:
+
+`children = db.relationship('ChildModel', backref='some_parent', lazy=True)`
+
+#### Other loading options:
+- https://docs.sqlalchemy.org/en/20/orm/queryguide/relationships.html
+- https://www.youtube.com/watch?v=qywsiQi6lvk&t=54s
+
+### resources:
+- https://www.youtube.com/watch?v=QATpsBELc8s
+- https://flask-sqlalchemy.palletsprojects.com/en/2.x/quickstart/#simple-relationships
+- https://docs.sqlalchemy.org/en/20/orm/relationship_api.html#sqlalchemy.orm.relationship
+
+
 # References
 - SQL Expressions: https://www.youtube.com/watch?v=HBH0b5n7bpU&t=108s
 - Mapping between Tables and Classes: https://www.youtube.com/watch?v=CF_tkEnIv44&t=128s
