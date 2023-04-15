@@ -206,6 +206,28 @@ Use python3 from terminal to import the library
 ## db.relationship
 ![image](images/db_relationship.png)
 
+![image](images/db_relationship1.png)
+
+### Many-To-Many
+- https://www.youtube.com/watch?v=17FW9tAaDvA&t=85s
+
+>```Python
+> order_items = db.Table('order_items',
+>     db.Column('order_id', db.Integer, db.ForeignKey('order.id'), primary_key=True),
+>     db.Column('product_id', db.Integer, db.ForeignKey('product.id'), primary_key=True)
+> )
+> 
+> class Order(db.Model):
+>   id = db.Column(db.Integer, primary_key=True)
+>   status = db.Column(db.String(), nullable=False)
+>   products = db.relationship('Product', secondary=order_items,
+>       backref=db.backref('orders', lazy=True))
+> 
+> class Product(db.Model):
+>   id = db.Column(db.Integer, primary_key=True)
+>   name = db.Column(db.String(), nullable=False)
+> ```
+
 ### Lazy loading vs. Eager loading
 - https://www.youtube.com/watch?v=oq-Wqp_BSps
 
@@ -227,6 +249,7 @@ Load all needed joined data objects, all at once.
 #### Other loading options:
 - https://docs.sqlalchemy.org/en/20/orm/queryguide/relationships.html
 - https://www.youtube.com/watch?v=qywsiQi6lvk&t=54s
+
 
 ### resources:
 - https://www.youtube.com/watch?v=QATpsBELc8s
