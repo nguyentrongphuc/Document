@@ -46,6 +46,9 @@ Different request methods indicate different operations to be performed. It's es
 - 405: Method Not Allowed
 - 500: Internal Server Error
 
+### Curl
+![image](images/curl.png)
+
 >```php
 > id |   description   
 >----+-----------------
