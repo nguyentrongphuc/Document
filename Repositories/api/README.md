@@ -49,6 +49,32 @@ Different request methods indicate different operations to be performed. It's es
 ### Curl
 ![image](images/curl.png)
 
+### Organizing API endpoints / Principles
+
+When organizing API endpoints, they should be based on the resources instead of on actions. The request methods will determine what action should be taken at a given URL endpoint. Your entire API's scheme should be consistent, clear and concise. Below are the principles and examples from the video, for your reference:
+
+- Should be intuitive
+- Organize by resource
+    + Use nouns in the path, not verbs
+    + The method used will determine the operation taken
+    + GOOD: `https://example.com/posts`
+    + BAD: `https://example.com/get_posts`
+- Keep a consistent scheme
+    + Plural nouns for collections
+    + Use parameters to specify a specific item
+    + GOOD:
+        + `https://example.com/entrees`
+        + `https://example.com/entrees/5`
+    + BAD:
+        + `https://example.com/entree`
+        + `https://example.com/entree_five`
+
+- Don’t make them too complex or lengthy
+    + No longer than collection/item/collection
+    + GOOD: `https://example.com/entrees/5/reviews`
+    + BAD: `https://example.com/entrees/5/customers/4/reviews`
+
+
 >```php
 > id |   description   
 >----+-----------------
