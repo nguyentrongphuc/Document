@@ -49,7 +49,7 @@ Different request methods indicate different operations to be performed. It's es
 ### Curl
 ![image](images/curl.png)
 
-### Organizing API endpoints / Principles
+## Organizing API endpoints / Principles
 
 When organizing API endpoints, they should be based on the resources instead of on actions. The request methods will determine what action should be taken at a given URL endpoint. Your entire API's scheme should be consistent, clear and concise. Below are the principles and examples from the video, for your reference:
 
@@ -73,6 +73,64 @@ When organizing API endpoints, they should be based on the resources instead of 
     + No longer than collection/item/collection
     + GOOD: `https://example.com/entrees/5/reviews`
     + BAD: `https://example.com/entrees/5/customers/4/reviews`
+
+## CORS headers
+
+### In order for the requests to be processed properly, CORS utilizes headers to specify what the server will allow:
+
+- Access-Control-Allow-Origin: What client domains can access its resources. For any domain use *
+- Access-Control-Allow-Credentials: Only if using cookies for authentication - in which case its value must be true
+- Access-Control-Allow-Methods: List of HTTP request types allowed
+- Access-Control-Allow-Headers: List of http request header values the server will allow, particularly useful if you use any custom headers
+
+### Document
+- https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
+
+## Flask-CORS
+- [Flask-CORS](https://flask-cors.readthedocs.io/en/latest/) is the extension for handling CORS and its installation and usage are very simple. 
+![image](images/flask-CORS.png)
+
+### Installation
+>```Terminal
+> pip install -U flask-cors
+>```
+
+### Simple Usage
+See the full list of options in the [documentation](https://flask-cors.corydolphin.com/en/latest/api.html#extension).
+
+>```php
+> from flask import Flask
+> from flask_cors import CORS
+> 
+> app = Flask(__name__)
+> CORS(app)
+> 
+> @app.route("/")
+> def helloWorld():
+>   return "Hello, cross-origin-world!"
+>```
+
+### Resource specific CORS
+Alternatively, you can specify CORS options on a resource and origin level of granularity by passing a dictionary as the resources option, mapping paths to a set of options. See the full list of options in the documentation.
+
+>```php
+> app = Flask(__name__)
+> cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+> 
+> @app.route("/api/v1/users")
+> def list_users():
+>   return "user example"
+>```
+
+### Route specific CORS via decorator
+This extension also exposes a simple decorator to decorate flask routes with. Simply add @cross_origin() below a call to Flask’s @app.route(..) to allow CORS on a given route. See the full list of options in the decorator documentation.
+
+>```php
+> @app.route("/")
+> @cross_origin()
+> def helloWorld():
+>   return "Hello, cross-origin-world!"
+>```
 
 
 >```php
