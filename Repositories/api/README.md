@@ -141,8 +141,6 @@ This extension also exposes a simple decorator to decorate flask routes with. Si
 >```
 
 
-
-
 # References
 ## Some frequently used APIS:
 - [Google Maps API](https://developers.google.com/maps/documentation/) allows users to access a large amount of data related to maps, routes, and places around the world.
