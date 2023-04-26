@@ -38,7 +38,7 @@
 
 >```python
 > Data Structure    |   Ordered    |    Mutable |   Constructor     |   Example
-> ------------------+--------------+--------------+-----------------+-----------------------
+> ------------------+--------------+------------+-------------------+-----------------------
 >  List             |   Yes        |    YES     |   [ ] or list()   |   [5.7, 4, 'yes', 5.7]
 >  Tuple            |   Yes        |    NO      |   ( ) or tuple()  |   (5.7, 4, 'yes', 5.7)
 >  Set              |   NO         |    YES     |   {}* or set()    |   {5.7, 4, 'yes'}
@@ -123,6 +123,51 @@ A set is a data type for mutable unordered collections of unique elements. One a
 > print("carbon" in elements)
 > print(elements.get("dilithium"))
 >```
+
+## Lambda Expressions
+You can use lambda expressions to create anonymous functions. That is, functions that don’t have a name. They are helpful for creating quick functions that aren’t needed later in your code. This can be especially useful for higher order functions, or functions that take in other functions as arguments.
+
+With a lambda expression, this function:
+
+>```Python
+> def multiply(x, y):
+>     return x * y
+> # can be reduced to:
+> multiply = lambda x, y: x * y
+>```
+
+## Documentation
+Documentation is used to make your code easier to understand and use. Functions are especially readable because they often use documentation strings, or docstrings. Docstrings are a type of comment used to explain the purpose of a function, and how it should be used. Here's a function for population density with a docstring.
+
+>```Python
+> def population_density(population, land_area):
+>     """Calculate the population density of an area.
+> 
+>     INPUT:
+>     population: int. The population of that area
+>  
+>     OUTPUT: 
+>     population_density: population / land_area. The population density of a particular area.
+>     """
+>     return population / land_area
+>```
+
+## Reading and Writing Files
+
+>```Python
+> f = open('my_path/my_file.txt', 'r')
+> file_data = f.read()
+> f.close()
+> 
+> with open('my_path/my_file.txt', 'r') as f:
+>     file_data = f.read()
+> 
+>```
+
+## The Standard Library
+https://pymotw.com/3/
+
+
 
 # References
 - document: document: https://peps.python.org/pep-0008/
