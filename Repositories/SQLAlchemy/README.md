@@ -3,6 +3,7 @@
 - Features function-based query construction: allows SQL clauses to be built via Python functions and expressions.
 - Avoid writing raw SQL. It generates SQL and Python code for you to access tables, which leads to less database-related overhead in terms of the volume of code you need to write overall to interact with your models.
 - Moreover, you can avoid sending SQL to the database on every call. The SQLAlchemy ORM library features automatic caching, caching collections, and references between objects once initially loaded.
+- python document: https://peps.python.org/pep-0008/
 
 ## SQLAlchemy vs psycopg2
 - SQLAlchemy generates SQL statements

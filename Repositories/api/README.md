@@ -98,7 +98,7 @@ When organizing API endpoints, they should be based on the resources instead of 
 ### Simple Usage
 See the full list of options in the [documentation](https://flask-cors.corydolphin.com/en/latest/api.html#extension).
 
->```php
+>```python
 > from flask import Flask
 > from flask_cors import CORS
 > 
@@ -113,7 +113,7 @@ See the full list of options in the [documentation](https://flask-cors.corydolph
 ### Resource specific CORS
 Alternatively, you can specify CORS options on a resource and origin level of granularity by passing a dictionary as the resources option, mapping paths to a set of options. See the full list of options in the documentation.
 
->```php
+>```python
 > app = Flask(__name__)
 > cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 > 
@@ -125,7 +125,7 @@ Alternatively, you can specify CORS options on a resource and origin level of gr
 ### Route specific CORS via decorator
 This extension also exposes a simple decorator to decorate flask routes with. Simply add @cross_origin() below a call to Flask’s @app.route(..) to allow CORS on a given route. See the full list of options in the decorator documentation.
 
->```php
+>```python
 > @app.route("/")
 > @cross_origin()
 > def helloWorld():
@@ -133,13 +133,24 @@ This extension also exposes a simple decorator to decorate flask routes with. Si
 >```
 
 
->```php
+>```python
 > id |   description   
 >----+-----------------
 >  1 | this is a thing
 > (1 row)
 >```
 
+
+## Flask Route Decorator
+
+>```python
+> @app.route('/hello', methods=['GET', 'POST'])
+> def greeting():
+>     if request.method == 'POST':
+>         return create_greeting()
+>     else:
+>         return send_greeting()
+>```
 
 # References
 ## Some frequently used APIS:
