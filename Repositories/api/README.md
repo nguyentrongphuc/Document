@@ -132,15 +132,6 @@ This extension also exposes a simple decorator to decorate flask routes with. Si
 >   return "Hello, cross-origin-world!"
 >```
 
-
->```python
-> id |   description   
->----+-----------------
->  1 | this is a thing
-> (1 row)
->```
-
-
 ## Flask Route Decorator
 
 >```python
@@ -151,6 +142,47 @@ This extension also exposes a simple decorator to decorate flask routes with. Si
 >     else:
 >         return send_greeting()
 >```
+
+
+# Unit Test
+
+## Unit test Flask Key Structures
+As we just saw, all of your Flask application tests will follow the same format:
+
+- Define the test case class for the application (or section of the application, for larger applications).
+- Define and implement the setUp function. It will be executed before each test and is where you should initialize the app and test client, as well as any other context your tests will need. The Flask library provides a test client for the application, accessed as shown below.
+- Define the tearDown method, which is implemented after each test. It will run as long as setUp executes successfully, regardless of test success.
+- Define your tests. All should begin with "test_" and include a doc string about the purpose of the test. In defining the tests, you will need to:
+    + Get the response by having the client make a request
+    + Use self.assertEqual to check the status code and all other relevant operations.
+- Run the test suite, by running python test_file_name.py from the command line.
+
+Here's that same code (from the notebook above), for your reference:
+
+>```python
+> class AppNameTestCase(unittest.TestCase):
+>     """This class represents the ___ test case"""
+> 
+>     def setUp(self):
+>         """Executed before each test. Define test variables and initialize app."""
+>         self.client = app.test_client
+>         pass
+> 
+>     def tearDown(self):
+>         """Executed after reach test"""
+>         pass
+> 
+>     def test_given_behavior(self):
+>         """Test _____________ """
+>         res = self.client().get('/')
+> 
+>         self.assertEqual(res.status_code, 200)
+> 
+> # Make the tests conveniently executable
+> if __name__ == "__main__":
+> unittest.main()
+>```
+
 
 # References
 ## Some frequently used APIS:
