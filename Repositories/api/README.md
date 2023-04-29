@@ -149,7 +149,7 @@ This extension also exposes a simple decorator to decorate flask routes with. Si
 ## Unit test Flask Key Structures
 As we just saw, all of your Flask application tests will follow the same format:
 
-- Define the test case class for the application (or section of the application, for larger applications).
+- *Define the test case class* for the application (or section of the application, for larger applications).
 - Define and implement the setUp function. It will be executed before each test and is where you should initialize the app and test client, as well as any other context your tests will need. The Flask library provides a test client for the application, accessed as shown below.
 - Define the tearDown method, which is implemented after each test. It will run as long as setUp executes successfully, regardless of test success.
 - Define your tests. All should begin with "test_" and include a doc string about the purpose of the test. In defining the tests, you will need to:
@@ -160,6 +160,12 @@ As we just saw, all of your Flask application tests will follow the same format:
 Here's that same code (from the notebook above), for your reference:
 
 >```python
+> #Import all dependencies
+> import unittest
+> import json
+> from flaskr import create_app
+> from models import setup_db
+> 
 > class AppNameTestCase(unittest.TestCase):
 >     """This class represents the ___ test case"""
 > 
