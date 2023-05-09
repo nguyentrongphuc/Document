@@ -80,6 +80,7 @@
 > False
 >```
 
+
 ### Tuples
 A tuple is another useful container. It's a data type for immutable ordered sequences of elements. They are often used to store related pieces of information. Consider this example involving latitude and longitude:
 
