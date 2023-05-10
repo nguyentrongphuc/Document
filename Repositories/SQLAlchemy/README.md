@@ -140,6 +140,72 @@ Moreover,
 >    return 'Hello World!'
 >```
 
+### Secret/environment variables handling
+- Database connection info needs to be handled as Environment variables; you can use the os package to create environment variables with default values.
+
+- There is guidance available directly in the code section; To see more details and capabilities on how to handle environment variables on Python, I recommend this [StackOverflow's thread](https://stackoverflow.com/questions/4906977/how-can-i-access-environment-variables-in-python)
+
+- Here is an example:
+    + config.py
+        ``` python
+        import os
+        # Connect to the database
+        DB_HOST = os.getenv('DB_HOST', '127.0.0.1:5432')  
+        DB_USER = os.getenv('DB_USER', 'postgres')  
+        DB_PASSWORD = os.getenv('DB_PASSWORD', 'P%40ssw0rd')  
+        DB_NAME = os.getenv('DB_NAME', 'trivia')  
+        DB_PATH = 'postgresql+psycopg2://{}:{}@{}/{}'.format(DB_USER, DB_PASSWORD, DB_HOST, DB_NAME)
+
+        # TODO IMPLEMENT DATABASE URL
+        SQLALCHEMY_DATABASE_URI = DB_PATH
+        SQLALCHEMY_TRACK_MODIFICATIONS = False
+        ```
+    + models.py
+        ```python
+        from sqlalchemy import Column, String, Integer
+        from flask_sqlalchemy import SQLAlchemy
+
+        db = SQLAlchemy()
+
+        def setup_db(app):
+            app.config.from_object('config')
+            db.app = app
+            db.init_app(app)
+            db.create_all()
+        ```
+    + __init__.py (app)
+        ```python
+        import os
+        from flask import Flask, request, abort, jsonify
+        from flask_sqlalchemy import SQLAlchemy
+        from flask_cors import CORS
+        from models import setup_db, Question, Category
+
+        def create_app(test_config=None):
+            app = Flask(__name__)
+            app.app_context().push()
+            setup_db(app)
+
+            #Set up CORS. Allow '*' for origins. Delete the sample route after completing the TODOs
+            CORS(app)
+            #Use the after_request decorator to set Access-Control-Allow
+            @app.after_request
+            def after_request(response):
+                response.headers.add(
+                    "Access-Control-Allow-Headers", "Content-Type,Authorization,true"
+                )
+                response.headers.add(
+                    "Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS"
+                )
+                return response
+
+            @app.route("/categories")
+            def retrieve_categories():
+                return jsonify( { "success": True }
+                )
+
+            return app
+        ```
 #### Takeaways
 - Given an instance of the SQLAlchemy class from Flask-SQLAlchemy,
 `db = SQLAlchemy(app)`
