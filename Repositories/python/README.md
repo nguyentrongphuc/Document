@@ -1,5 +1,22 @@
 # Python
 
+## Installation
+
+### python
+- Download and install the latest Python for your OS: https://www.python.org/downloads/
+- pip install https://pip.pypa.io/en/stable/installation/
+
+You can verify the successful installation (new or existing) by running the following commands either on Terminal, or Git Bash.
+```terminal
+python --version
+pip --version
+
+or 
+
+python3 --version
+pip3 --version
+```
+
 ## String Methods
 ![image](images/string_methods.png)
 

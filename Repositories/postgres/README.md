@@ -1,5 +1,17 @@
 # POSTGRES commands
 
+## Install Postgres
+(On your local machine only, the workspaces are already set up)
+
+Before we can use Postgres, we'll need to install it. You may already have Postgres, for example, if you're a macOS user, it already comes installed on your machine. But just in case, here are some steps for downloading and installing it.
+
+Go to the Postgres Download page and download Postgres for your machine: https://www.postgresql.org/download/
+
+For MacOS, Postgres is already downloaded. Homebrew is a popular route for installing Postgres. See this gist on installing Postgres via Brew. https://gist.github.com/ibraheem4/ce5ccd3e4d7a65589ce84f2a3b7c23a3
+
+On Linux, you can run `apt-get install postgresql`
+
+
 ## connect db
     psql <dbname> --username=postgres
 

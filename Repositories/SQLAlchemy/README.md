@@ -10,6 +10,10 @@
 - psycopg2 directly sends SQL statements to the database.
 - SQLAlchemy depends on psycopg2 or other database drivers to communicate with the database, under the hood.
 
+### Installation
+- `$ pip install pyscopg2`
+- `pip install psycopg2-binary`
+
 ## Layers of SQLAlchemy
 1. DBAPI
 2. The Dialect
