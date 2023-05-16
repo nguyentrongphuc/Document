@@ -5,8 +5,6 @@
 - Authorization systems - design and implementation for backend and frontend.
 - Basic security best practices and key principals to keep in mind.
 
-
-
 # References
 
 - Oath2: https://oauth.net/2/
