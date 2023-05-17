@@ -5,6 +5,11 @@
 - Authorization systems - design and implementation for backend and frontend.
 - Basic security best practices and key principals to keep in mind.
 
+## Implement Autho0
+https://www.youtube.com/watch?v=Mikr9g_JBaE&t=81s
+
+
+
 # References
 
 - Oath2: https://oauth.net/2/
@@ -21,3 +26,4 @@ Common Auth Services:
 - Firebase Auth: https://firebase.google.com/docs/auth
 - Okta: https://www.okta.com
 
+- https://pypi.org/project/jwt/
