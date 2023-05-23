@@ -52,7 +52,7 @@ def header(jwt):
 ## Cryptography Python Package
 ### Installation
     `$pip install cryptography`
-### sample
+### Sample
 ```python
 from cryptography.fernet import Fernet
 
@@ -69,15 +69,31 @@ print(f'encrypt: {ciphertext}')
 ## Decrypt
 decryptedtext = f.decrypt(ciphertext)
 print(f'decrypt: {decryptedtext}')
-
-
 ```
 
-
-### Document
+### Read more
 - https://cryptography.io/en/latest/
 
 
+## Hashing with Salts
+### Installation: `$ pip install bcrypt` or  `$ pip2 install bcrypt`
+### Example
+```python
+import bcrypt
+
+passwords = ['securepassword','udacity','learningisfun']
+hashed = b'$2b$14$EFOxm3q8UWH8ZzK1h.WTZeRcPyr8/X0vRfuL3/e9z7AKIMnocurBG'
+
+for pwd in passwords:
+    if bcrypt.checkpw(pwd.encode(), hashed):
+        print("It Matches! " + pwd)
+    else:
+        print("It Does not Match :( " + pwd)
+```
+
+### Read more
+- https://github.com/pyca/bcrypt/
+- https://docs.python.org/3/library/hashlib.html
 
 
 # References
