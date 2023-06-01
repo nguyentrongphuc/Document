@@ -16,6 +16,8 @@ from flask import Flask, redirect, session, url_for, request, abort
 from functools import wraps
 
 app = Flask(__name__)
+
+
 def requires_auth(f):
     @wraps(f)
     def wrapper( *args, **kwargs):
@@ -44,6 +46,8 @@ def header(jwt):
     return "not implemented"
 
 ```
+
+Read more at: https://github.com/nguyentrongphuc/coffee_shop/blob/master/backend/src/auth/auth.py
 
 ### Sending Tokens from Popular Frontend Frameworks
 - [React + Redux - JWT Tutorial](https://jasonwatmore.com/post/2017/12/07/react-redux-jwt-authentication-tutorial-example) There are many ways to include JWTs in requests from frontend frameworks. Jason Watmore has many tutorials for your frontend flavor of choice.
@@ -97,15 +101,7 @@ for pwd in passwords:
 
 ## Javascript to decode JWT
 ```javascript
-function parseJwt (token) {
-    // https://stackoverflow.com/questions/38552003/how-to-decode-jwt-token-in-javascript
-   var base64Url = token.split('.')[1];
-   var base64 = decodeURIComponent(atob(base64Url).split('').map((c)=>{
-       return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-   }).join(''));
 
-   return JSON.parse(base64);
-};
 ```
 # References
 
