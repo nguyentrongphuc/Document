@@ -1,6 +1,6 @@
 # Containers vs. Virtual Machines
 
-![image](images/vs_container.png)
+![image](images/vm_container.png)
 
 
 ## Benefits of using Containers versus VMs
