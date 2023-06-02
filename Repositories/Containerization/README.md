@@ -28,7 +28,6 @@ Installing Docker means installing Docker Desktop, a command-line utility. There
 ### Verify the Docker installation
 You can run either of the following commands in your Mac terminal / WSL terminal:
 
-
 ```python
 
 # to check the version
@@ -44,6 +43,55 @@ docker run -d -p 80:80 docker/getting-started
 We will learn more in detail about the command above, but for now, it fetches an image docker/getting-started and creates and runs a container. You can access this container using http://localhost:80 in your browser. See a snapshot below:
 
 ![image](images/snap17.png)
+
+
+### Docker Concepts
+
+https://www.youtube.com/watch?v=UVeABQg9t18&t=63s
+
+Let's understand a few terms before we dive deeper:
+
+#### Docker Engine
+Docker Engine is an application that consists of a daemon, an API, and a client:
+- The Docker daemon is a server that manages the images, containers, networks, and volumes.
+- The Docker client is the user interface for Docker. The client is a CLI, so most of the work you do with Docker will take place at the command line.
+
+The client communicates with the daemon through the command line API as shown in the image below. You will be using the Docker Engine to create and run containers, so if you have not installed Docker using the links above, please be sure to do so.
+
+#### Docker Image
+A Docker image is the set of instructions for creating a container. The image typically includes a file system and the parameters that will be used for the container.
+
+#### Docker Container
+You have already been introduced to containers, and a Docker container is just the Docker-specific implementation of the concept. In practice, Docker containers are created from Docker images - a container is a runnable instance of an image. Note that since the image is a set of instructions for creating a container, multiple containers can be created from the same image. 
+
+#### Docker Registry
+Docker images can be stored and distributed using a Docker registry. In the next classroom concept, you will download and run an image from DockerHub, which is a free registry with many images you can use.
+
+
+### How does it work?
+
+Let me give you an overview of the flow of execution for creating a container:
+
+Dockerfile → Docker Image → Docker container
+
+The steps shown above are: 1. **Write a Dockerfile**:
+It is a text document that contains the commands a user would execute on the command line to assemble an image. In this file, you can specify the necessary environments and dependencies. For example, see a Dockerfile below: ```bash # Pull the "tomcat" image. The community maintains this image. FROM tomcat # Copy all files present in the current folder to the "/usr/local/tomcat/webapps" folder COPY ./*.* /usr/local/tomcat/webapps ``` In the example above, every time you create a container, it will have the tomcat web server installed. In addition, all the contents of the current directory will also be copied to the */usr/local/tomcat/webapps* folder of each container. See another Dockerfile [example here](https://github.com/docker/labs/blob/master/beginner/static-site/Dockerfile). 
+**We will learn more about the Dockerfile and practice writing them on the upcoming page.** For now, see the [Dockerfile reference](https://docs.docker.com/engine/reference/builder/) for possible commands you can use. 
+
+
+#### Build an Image:
+Use the docker build command to build an image from the Dockerfile. Usually, we execute this command from the same directory where the Dockerfile is present.
+# This command will look for a Dockerfile in the `pwd`, and create myImage
+docker build  --tag myImage  [OPTIONS] path_where_to_store_the_image 
+
+#### Key Terms
+Term:	Definition
+- Dockerfile:	A file containing instructions on how to translate an application into an image that can be run in containers
+- Base Image:	A set of common dependencies built into a Docker image that acts as a starting point to build an application’s Docker images to reduce build times
+- Image:	A snapshot of dependencies and code used by Docker containers to run an application
+- Container:	Grouped software dependencies and packages that make it easier and more reliable to deploy software
+- DockerHub:	A centralized place (online) to store and share Docker images.
+- Docker Registry:	An application that stores and lets you distribute Docker images.
 
 
 # References
