@@ -97,23 +97,72 @@ Term:	Definition
 
 DockerHub is the world’s largest registry of Docker images with more than 100,000 images available. DockerHub is the default registry for Docker. It contains images ready to run a great variety of applications.
 
-### Pull the latest postgress
+### Fetch the image - Pull the latest postgress
 #Pull the lastest postgres from DockerHub to your local
 
 `docker pull postgress:latest`
 
-### Run the postgress image 
-docker run --name psql -e POSTGRES_PASSWORD=P@ssw0rd -p 5433:5432 -d postgres:latest
+### Create and run a conatiner - Run the postgress image 
+`docker run --name psql -e POSTGRES_PASSWORD=P@ssw0rd -p 5433:5432 -d postgres:latest`
 
-### Check the running contenner
-docker ps
+In the command above:
 
+The `--name` flag allows you to specify a name for the container that can be used later to reference the container. If you don’t specify a name, Docker will assign a random string name to the container.
+The `-e` flag stands for “environment”. This sets the environment variable POSTGRES_PASSWORD to the value password!.
+The `-p` flag stands for “publish”. This allows you to bind your local machine’s port 5433 to the container port 5432.
+The `-d` stands for “detach”. This tells Docker run the indicated image in the background and print the container ID. When you use this command, you will still be able to use the terminal to run other commands, otherwise, you would need to open a new terminal.
 
-CONTAINER ID | IMAGE  |  COMMAND  |  CREATED |  
+### Check the running container
+`docker ps`
 
 CONTAINER ID   |   IMAGE   |      COMMAND       |      CREATED   |    STATUS    |    PORTS        |       NAMES    |
 | ------------- | ------------- |  ------------- | ------------- |  ------------- |  ------------- | ------------- | 
 | 274180a9eb73   | postgres:latest  |  "docker-entrypoint.s…"  | 2 minutes ago |  Up 2 minutes  | 0.0.0.0:5433->5432/tcp  | psql |
 
+### Connect to the container - Connect the Postgress
+
+```python
+psql -h 127.0.0.1 -p 5433 -U postgres
+
+# Mac/Linux users can also connect from the 0.0.0.0 address
+psql -h 0.0.0.0 -p 5433 -U postgres
+```
+
+This command allows you to access the database using the same port that you exposed earlier. Note that after running that command you will need to enter the same password that you set with the POSTGRES_PASSWORD when creating the container (password!).
+
+### Test Container with SQL commands
+
+- List all databases using `\l` command or
+- List all tables (relations) using the `\dti` command.
+- More commands can be found in the Postgres documentation here: 
+    + https://github.com/nguyentrongphuc/Document/blob/master/Repositories/postgres/README.md
+    + https://www.postgresql.org/docs/current/app-psql.html
+
+- When you are finished testing Postgres, you can quit your connection to Postgres using `\q`
+
+
+### Clean-up container
+```python
+#List all containers
+docker ps --all
+# Stop
+docker stop <container_ID>
+docker stop <container_name>
+
+# Start an existing container which is stopped 
+docker start <container_ID>
+docker start <container_name>
+
+# Remove
+docker container rm <container_ID>
+```
+
+Similarly, you can view the images in your local system, and remove anyone as:
+```python
+# List all images
+docker image ls
+# Remove
+docker image rm <image_ID>
+```
 
 # References
