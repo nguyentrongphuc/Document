@@ -93,5 +93,27 @@ Term:	Definition
 - DockerHub:	A centralized place (online) to store and share Docker images.
 - Docker Registry:	An application that stores and lets you distribute Docker images.
 
+## DockerHub
+
+DockerHub is the world’s largest registry of Docker images with more than 100,000 images available. DockerHub is the default registry for Docker. It contains images ready to run a great variety of applications.
+
+### Pull the latest postgress
+#Pull the lastest postgres from DockerHub to your local
+
+`docker pull postgress:latest`
+
+### Run the postgress image 
+docker run --name psql -e POSTGRES_PASSWORD=P@ssw0rd -p 5433:5432 -d postgres:latest
+
+### Check the running contenner
+docker ps
+
+
+CONTAINER ID | IMAGE  |  COMMAND  |  CREATED |  
+
+CONTAINER ID   |   IMAGE   |      COMMAND       |      CREATED   |    STATUS    |    PORTS        |       NAMES    |
+| ------------- | ------------- |  ------------- | ------------- |  ------------- |  ------------- | ------------- | 
+| 274180a9eb73   | postgres:latest  |  "docker-entrypoint.s…"  | 2 minutes ago |  Up 2 minutes  | 0.0.0.0:5433->5432/tcp  | psql |
+
 
 # References
