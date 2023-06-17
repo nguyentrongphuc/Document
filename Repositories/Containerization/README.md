@@ -165,4 +165,119 @@ docker image ls
 docker image rm <image_ID>
 ```
 
+## Dockerfiles 
+
+Dockerfiles are text files used to define Docker images. They contain commands used to define a source or parent image, copy files to the image, install software on the image, and define the application which will run when the image is invoked.
+
+![image](images/image3.png)
+
+### Dockerfile Command Glossary
+
+- Dockerfile comments start with `#`.
+- `FROM` defines source image upon which the image will be based.
+- `COPY` copies files to the image.
+- `WORKDIR` defines the working directory for other commands.
+- `RUN` is used to run commands other than the main executable.
+- `ENTRYPOINT` is used to define the main executable.
+
+```pyhton
+FROM python:3.7.2-slim
+
+COPY . /app
+WORKDIR /app
+
+RUN pip install --upgrade pip
+RUN pip install flask
+
+ENTRYPOINT [“python”, “app.py”]
+```
+
+### Example 1
+#### 1. Create an empty Dockerfile In a new directory for this exercise, create a file named Dockerfile. Note that a Dockerfile does not have any file extensions.
+
+Mac/Linux/Windows users using WSL/GitBash can use the following commands:
+```python
+# create a new directory
+mkdir Example1
+cd Example1
+# create a file in the present working directory
+touch Dockerfile
+# open the file in any text editor, such as VS Code
+code .
+```
+
+#### 2. Write Dockerfile content In the Dockerfile, add the lines
+
+```python
+FROM python:3.7.2-slim
+
+ENTRYPOINT ["echo", "hello simple dockerfile"]
+```
+
+#### 3. Build an image Build the image from the same directory using the command
+```terminal
+docker build --tag test .
+```
+
+Here, the image name is "test". Note that the full stop (.) tells the docker build command to use the Dockerfile found in the current directory.
+
+#### 4. Create and run a container: Once the image is built, you can run the container with the command:
+
+`docker run --name myContainer  test --rm`
+
+where, `--rm` option ensures that the container is removed when it exits.
+
+#### 5. Clean up - Stop and remove the container:
+```terminal
+docker ps -a
+docker container stop <container_ID>
+docker container rm <container_ID>
+```
+
+### Example 2
+
+#### 1. See example in /examples/flaskapp/
+Navigate to flaskapp 
+
+#### 2. Build an image
+`docker build -t test .`
+
+Here, the `-t` flag is an alternate way of writing `--tag`. Don't forget to put a period (`.`) at the end of the command. It tells the build command to look out for the Dockerfile in the current directory. Check the list of images:
+
+`docker image ls`
+
+#### 3. Create and run a container
+Use the "test" image to create and run the container "myContainer":
+
+`docker run --name myContainer  -p 80:8080 test`
+
+In this command, you are mapping port 80 of your local machine to the port 8080 of the container running the flask application. If your port 80 is already in use by other application, feel free to use any other port number, such as 9090.
+
+#### 4. Access the application
+Open a new terminal, and Curl the endpoint
+```terminal
+# Mac/Linux users only
+curl http://0.0.0.0/
+# Windows users using WSL/GitBash
+curl http://127.0.0.1:80/
+```
+
+Alternatively, you can check your browser with http://localhost:80/ or http://127.0.0.1:80/ (Use the host port number as you've mapped in the docker run command).
+
+#### 5. Clean up
+When you are finished, stop and remove the container:
+
+```t
+# Get the id of the running container
+docker ps
+# Stop the container
+docker stop <Container Id>
+
+#Further, you can remove the container and image from your local machine as:
+
+docker container rm <container_Id>
+docker image ls
+docker image rm <image_Id>
+```
+
 # References
