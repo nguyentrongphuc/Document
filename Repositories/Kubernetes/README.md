@@ -340,6 +340,10 @@ In case of issues, you can try:
 `kubectl get svc,deployments,nodes,pods`
 
 ### 4. Deploy the application
+
+We have provided you the deployment.yml that contains all the necessary configuration details. Open the file and replace IMAGE_TAG with <DockerHub username>/simple-flask. Also, notice that we have given our deployment the simple-flask-deployment name.
+
+
 ```python
 # Recheck the cluster status, Nodes should be ready
 kubectl get nodes
