@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: monetize-demo-deployment
+  labels:
+    app: monetize-demo
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: monetize-demo
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 2
+      maxSurge: 2
+  template:
+    metadata:
+      labels:
+        app: monetize-demo
+    spec:
+      containers:
+      - name: monetize-demo
+        # image: IMAGE_TAG
+        image: nguyentrongphuc/monetize-demo:linux-amd64
+        securityContext:
+          privileged: false
+          readOnlyRootFilesystem: false
+          allowPrivilegeEscalation: false
+        ports:
+          - containerPort: 8080

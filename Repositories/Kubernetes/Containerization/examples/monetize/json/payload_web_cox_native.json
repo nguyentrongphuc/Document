@@ -1,0 +1,42 @@
+{
+    "id": "333a8888abcd47e98cb69de19999egad",    
+    "imp": [{
+        "id": "1",                
+        "native": {
+                "request": "{\"plcmtcnt\":1,\"contextsubtype\":10,\"plcmttype\":1,\"assets\":[{\"id\":99,\"title\":{\"len\":50},\"required\":0},{\"id\":98,\"img\":{\"type\":1,\"hmin\":10,\"wmin\":10},\"required\":0},{\"id\":97,\"img\":{\"type\":3,\"hmin\":10,\"wmin\":10},\"required\":0},{\"id\":96,\"video\":{\"mimes\":[\"video/mp4\"],\"minduration\":10,\"maxduration\":50,\"protocols\":[2,3]},\"required\":0},{\"id\":1,\"data\":{\"type\":1},\"required\":0},{\"id\":2,\"data\":{\"type\":2},\"required\":0},{\"id\":3,\"data\":{\"type\":3},\"required\":0},{\"id\":4,\"data\":{\"type\":4},\"required\":0},{\"id\":5,\"data\":{\"type\":5},\"required\":0},{\"id\":6,\"data\":{\"type\":6},\"required\":0},{\"id\":7,\"data\":{\"type\":7},\"required\":0},{\"id\":8,\"data\":{\"type\":8},\"required\":0},{\"id\":9,\"data\":{\"type\":9},\"required\":0},{\"id\":10,\"data\":{\"type\":10},\"required\":0},{\"id\":11,\"data\":{\"type\":11},\"required\":0},{\"id\":12,\"data\":{\"type\":12},\"required\":0},{\"id\":13,\"data\":{\"type\":13},\"required\":0}],\"context\":1,\"ver\":\"1.2\",\"eventtrackers\":[{\"event\":1,\"methods\":[1,2]}]}",
+                "ver": "1.1"
+              },        
+        "tagid": "cox_auto_code",
+        "bidfloor":0,
+        "bidfloorcur":"USD",
+        "secure":1,        
+        "ext": {
+            "appnexus": {
+            "placement_id": 30064555,
+            "keywords": "xandr-test=cox-auto"
+            }
+        }                
+    }],
+    "device": {
+        "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 16_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/113.0.5672.69 Mobile/15E148 Safari/604.1",
+        "ip": "37.252.168.65",
+        "language": "us"
+    },
+    "site": {
+        "cat": [
+            "IAB1"
+        ],
+        "domain": "autotrader.com",
+        "id": "20",
+        "page": "https://www.autotrader.com/tesla"
+    },
+    "user": {
+        "id": "1234567899B74ABCDEFB783E2BE0987653DF70D0",
+        "buyeruid": "6440476702250941057",     
+        "eids": [{
+            "source": "adserver.org",
+            "id": "bd2c1f27-56cb-49c7-a276-b01a80f19781",
+            "rti_partner": "TDID"
+        }]
+    }    
+}

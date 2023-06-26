@@ -304,6 +304,8 @@ Run the following command to create the EKS cluster:
 
 `eksctl create cluster --name eksctl-demo --nodes=2 --version=1.22 --instance-types=t2.medium --region=us-east-2`
 
+`eksctl create cluster --name eksctl-demo --nodes=2 --version=1.22 --instance-types=t2.micro --region=us-east-2`
+
 Known Issue - Sometimes, the cluster creation may fail in the `us-east-1` region. In such a case, use `--region=us-east-2` option. It is because the `us-east-1` region does not have sufficient capacity to support the cluster.
 
 Note that we have chosen the `--version=1.22` because the local kubectl version is also close to 1.22. You can check your local kubectl using `kubectl version --short --client`. The command above will take a few minutes to execute, and create an EKS cluster "eksctl-demo" with:
@@ -335,13 +337,57 @@ In case of issues, you can try:
 - `eksctl`: is used to create/delete/edit a cluster.
 - `kubectl`: is used to interact with the cluster.
 
-### 4. Delete the cluster
+`kubectl get svc,deployments,nodes,pods`
+
+### 4. Deploy the application
+```python
+# Recheck the cluster status, Nodes should be ready
+kubectl get nodes
+kubectl apply -f deployment.yml
+
+# Other usefull commands:
+# Verify the deployment
+kubectl get deployments
+# Check the rollout status
+kubectl rollout status deployment/simple-flask-deployment
+# IMPORTANT: Show the service, nodes, and pods in the cluster
+# You will notice that the service does not have an external IP
+kubectl get svc,nodes,pods
+# Show the services in the cluster
+kubectl describe services
+# Display information about the cluster
+kubectl cluster-info
+
+```
+
+### 5. Expose the service to access the application
+Run this command again to realize that our `simple-flask-deployment` is not exposed yet. There will be no External IP to access the application.
+
+`kubectl get svc,deployments,nodes,pods`
+
+Let's expose the `simple-flask-deployment` service to access the application on an <External IP>:<port>.
+
+`kubectl expose deployment simple-flask-deployment --type=LoadBalancer --name=my-service`
+
+The command above will create a new service and expose it on an AWS URL similar to: http://a66cc8ff655d04c47a790a46d36ad783-1087375811.us-east-2.elb.amazonaws.com:8080/ (Do not forget to append the port!).
+
+To see the public API, run with `kubectl get svc`
+
+![image](images/deployapp.jpeg)
+
+
+### 5. Delete the cluster
 If you do not plan to continue to the next pages/lessons right away, you must delete the cluster either using the CloudFormation web-console, or by using the EKSCTL command. Choose any one option from below:
 
 - From the CloudFormation web-console, select your stack and choose delete from the actions menu
 - Delete using the EKSCTL:
-`eksctl delete cluster eksctl-demo  --region=us-east-2`
 
+```python
+# Delete your deployment
+kubectl delete deployments/simple-flask-deployment
+# Tear down your cluster
+eksctl delete cluster eksctl-demo --region=us-east-2
+```
 
 ## Creating a EKS Cluster: Key Points
 - eksctl makes it easy to create a cluster and all of the resources needed to use it
@@ -356,5 +402,26 @@ Now that you have now been introduced to three command-line tools that you can u
 - kubectl: This tool is used to interact with an existing cluster, but can’t be used to create or delete a cluster.
 
 
+## Troubleshooting
+
+```python
+# Check the logs – kubectl logs
+kubectl logs mypod --all-containers
+
+### Check the deployment – kubectl describe deployment
+kubectl describe deployment mydeployment
+
+# Check the pod description – kubectl describe pod
+ubectl describe pod the-pod-name
+
+# List all namespaces, all pods
+kubectl get all -A
+
+# Show all events
+kubectl get events -w
+
+# Show component status
+kubectl get componentstatuses
+```
 # References
 

@@ -1,0 +1,154 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Monetize Native Ad Example</title>
+  </head>
+
+  <body>
+    <div id='native-5308906219245056926' width="1148" click-tracker="{{data.click_tracker}}" impression-tracker="{{data.impression_tracker}}">
+      <h1>Welcome Monetize</h1>
+      <img id="img-impression-tracker" height="1" width="1" style="display: none" src="{{data.impression_tracker}}" />
+      <div width="1148" rel="nofollow,noopener" target="_blank" class="css-native-ad">
+          <div width="1148" class="css-main">
+            <a width="1148" target="_blank" rel="nofollow,noopener" class="css-a-image">
+              <img alt="{{data.title}}" src="{{data.img_url}}?w=480" translate="" scale="" />
+            </a>
+            <div class="css-aeay6g ezrnx4g9">
+                <div class="css-y43b6 ezrnx4g8">
+                  <h2 class="css-1pbwzwn" id="header">{{data.title}}</h2>
+                  <p type="body" class="ezrnx4g7 css-yso39p emgezi80" id="body">
+                  <p>{{data.desc}}.</p>
+                  </p>
+                </div>
+                <div class="css-cta-logo">
+                  <div>
+                      <div class="css-fp0cg9 ezrnx4g6">
+                        <a width="auto" href="" target="_blank" rel="nofollow,noopener" data-camp-module-id="hp_simplified_native" data-testid="simp_native_temp_featured_content_cta" class="css-f7j6vf e1uau9z02" aria-describedby="audioeye_new_window_message">
+                            <span width="auto" class="css-k47pfu e1uau9z01">
+                              {{data.cta}}
+                            </span>
+                        </a>
+                      </div>
+                      <div class="css-1ett4j9 ezrnx4g4">
+                        <div class="ezrnx4g2 css-1anb2m7 e87bpoh0"></div>
+                      </div>
+                  </div>
+                  <div class="css-sponsored">
+                      <img alt=" Logo" src="{{data.icon_url}}?w=100" class="ezrnx4g3 css-11hnum6 e1nnhggb0">
+                      <div class="ezrnx4g1 css-1nwjojs e87bpoh0">{{data.sponsored}}</div>
+                  </div>
+                </div>
+            </div>
+          </div>
+      </div>
+    </div>
+
+  </body>
+</html>
+
+<script>
+  
+  window.addEventListener("DOMContentLoaded", (event) => {
+    var targetContainer = document.getElementById('native-5308906219245056926');
+    var fireRequest = function(url) {
+          var request = new XMLHttpRequest();
+          request.open('GET', url);
+          request.send();
+      };
+    targetContainer.addEventListener('click', function() {
+      var url=targetContainer.getAttribute('click-tracker');
+      fireRequest(url);
+      window.open('http://xandr.com', '_blank');
+    });
+    
+  });
+
+
+</script>
+<style>
+  .css-native-ad {
+    box-shadow: none;
+    border-radius: 4px;
+    text-align: inherit;
+    color: inherit;
+    background-color: rgb(242, 242, 242);
+    padding: 20px;
+    border: 1px solid rgb(220, 220, 220);
+    height: 300px;
+  }
+  
+  .css-main {
+    display: grid;
+    grid-template-columns: 4fr 6fr;
+    grid-template-rows: 1fr;
+    gap: 24px;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    place-content: center;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    min-height: 240px;
+    max-height: 300px;
+  }
+
+  .css-a-image {
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    pointer-events: auto;
+    max-height: 100%;
+    height: 268px;
+  }
+
+  .css-a-image img {
+    transition: all 0.5s ease 0s;
+    border: 0px;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+  }
+
+  .css-aeay6g {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    gap: 16px;
+    align-content: center;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+  .css-y43b6 {
+    display: grid;
+    row-gap: 8px;
+    overflow: hidden auto;
+  }
+  .css-cta-logo {
+    display: grid;
+    grid-template-columns: 6fr 2fr;
+    gap: 24px;
+    -webkit-box-align: end;
+    align-items: end;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+  }
+
+  .css-sponsored { 
+    text-align: center;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.7px;
+    line-height: 12px;
+    font-family: "Open Sans", sans-serif, Tahoma, Arial;
+    font-style: normal;
+    margin: 0px;
+    display: block;
+    text-align: center;
+    color: rgb(0, 0, 0);
+  }
+  
+</style>

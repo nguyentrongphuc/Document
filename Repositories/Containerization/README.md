@@ -225,13 +225,17 @@ Here, the image name is "test". Note that the full stop (.) tells the docker bui
 
 `docker run --name myContainer  test --rm`
 
-where, `--rm` option ensures that the container is removed when it exits.
+where, 
+- `--rm` option ensures that the container is removed when it exits.
+- `myContainer` you name it
+- `test` is imange's name
 
 #### 5. Clean up - Stop and remove the container:
 ```terminal
 docker ps -a
 docker container stop <container_ID>
 docker container rm <container_ID>
+docker container rm <container_name>
 ```
 
 ### Example 2
@@ -278,6 +282,55 @@ docker stop <Container Id>
 docker container rm <container_Id>
 docker image ls
 docker image rm <image_Id>
+docker image rm <image_name>
 ```
+
+# Deployment using CI/CD
+## Push Local image to DockerHub
+
+### Two popular container-registries are AWS ECR and Docker Hub. For this exercise, we will use Docker Hub.
+
+1. Go to Docker Hub https://hub.docker.com/repository/docker/nguyentrongphuc/monetize-demo/general
+2. Login and go to the repositories section
+3. Create a public repository named simple-flask.
+
+### Build a Docker Image
+
+```python
+
+docker build -t <DockerHub username>/<image name> .
+# Example: docker build -t nguyentrongphuc/monetize-demo .
+
+# Docker in fact detects the Apple M1 Pro platform as linux/arm64/v8
+# Build for ARM64 (default)
+docker build -t <image-name>:<version>-arm64 .
+
+# Build for ARM64 
+docker build --platform=linux/arm64 -t <image-name>:<version>-arm64 .
+
+# Build for AMD64
+docker build --platform=linux/amd64 -t <image-name>:<version>-amd64 .
+
+# View the list of images
+docker image ls
+
+```
+
+### 4. Push the Local Image to the Dockerhub Repository
+Use the following command:
+
+```python
+# Dockerhub login from terminal
+docker login -u <DockerHub username>
+# Example: docker login -u sudkul
+# Syntax: 
+docker push <DockerHub username>/<Repo-name>:<tag-name>
+# Example: docker push  sudkul/simple-flask:latest
+
+```
+
+The name of the local image should match with the Dockerhub repository name. In case of a name mistmatch, it will generate an error; and you will have to change the tag before pushing, as:
+
+`docker tag <local-image-name>:<tag-name> <Repo-name>:<tag-name>`
 
 # References
