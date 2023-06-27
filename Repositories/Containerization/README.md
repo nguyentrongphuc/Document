@@ -285,7 +285,10 @@ docker image rm <image_Id>
 docker image rm <image_name>
 ```
 
-# Deployment using CI/CD
+# Image Registry
+We need to have a Docker image built out of a simple flask application. To deploy a Docker image to a Kubernetes cluster, we first must put the image in a container registry that the cluster can access.
+![image](images/cdnd-c3-l4-kubernetes.jpg)
+
 ## Push Local image to DockerHub
 
 ### Two popular container-registries are AWS ECR and Docker Hub. For this exercise, we will use Docker Hub.
@@ -314,6 +317,8 @@ docker build --platform=linux/amd64 -t <image-name>:<version>-amd64 .
 # View the list of images
 docker image ls
 
+# Run Container with images
+docker run --name <container_name> -p 80:8080 <image-name>:<tag-name>
 ```
 
 ### 4. Push the Local Image to the Dockerhub Repository
