@@ -59,17 +59,23 @@ Therefore, having your CodeBuild service communicate with the EKS cluster will r
 Let's create an IAM role for authenticating the Codebuild. Creating an IAM role has two components:
 
 #### 2.1. Create a Trust relationship
-We can define the [Trust relationship](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user.html) in the form of a JSON file. However, we have given this file, trust.json, for your convenience. At this point, it is essential to understand two terms:
+We can define the [Trust relationship](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user.html) in the form of a JSON file. However, we have given this file, [trust.json](https://github.com/nguyentrongphuc/Document/blob/master/Repositories/Kubernetes/Containerization/trust.json), for your convenience. At this point, it is essential to understand two terms:
 
-Trusting account: the resource owner (EKS cluster). In our example, it is YOU because you've created the EKS cluster. We will mention the details of the Trusting account in the trust.json.
-Trusted account: the entity/service who will assume the role to need access to the resource (EKS cluster). In our example, it is the CodeBuild service.
+- Trusting account: the resource owner (EKS cluster). In our example, it is YOU because you've created the EKS cluster. We will mention the details of the Trusting account in the trust.json.
+- Trusted account: the entity/service who will assume the role to need access to the resource (EKS cluster). In our example, it is the CodeBuild service.
+
 Here are the steps to create a Trust relationship:
 
-Find your AWS account ID using the command:
-aws sts get-caller-identity --query Account --output text
+1. Find your AWS account ID using the command:
+```bash
+aws sts get-caller-identity --query Account --output text`
+
 ## Returns the AWS account id similar to 
 ## 519002666132
-Update the trust.json file with your AWS account id.
+```
+
+1. Update the trust.json file with your AWS account id.
+```json
 {
 "Version": "2012-10-17",
 "Statement": [
@@ -82,9 +88,112 @@ Update the trust.json file with your AWS account id.
     }
 ]
 }
+```
+
 Replace the <ACCOUNT_ID> with your actual AWS account ID. Reference: Creating a role to delegate permissions to an IAM user
 
+#### 2.2. Create the Policy
+Policy is also a JSON file where we will define the set of permissible actions that the Codebuild can perform. A policy can have multiple actions, though we need just one for this example: `eks:Describe`
+
+We have given you a policy file, [iam-role-policy.json](https://github.com/nguyentrongphuc/Document/blob/master/Repositories/Kubernetes/Containerization/iam-role-policy.json), containing the following permissible action:
+
+{
+ "Version": "2012-10-17",
+ "Statement": [
+     {
+         "Effect": "Allow",
+         "Action": [
+             "eks:Describe*"
+         ],
+         "Resource": "*"
+     }
+ ]
+}
+
+#### 2.3. Create an IAM role
+Run this command to create a role, using the trust relationship defined in trust.json:
+```bash
+aws iam create-role --role-name UdacityFlaskDeployCBKubectlRole --assume-role-policy-document file://trust.json --output text --query 'Role.Arn'
+```
+
+In the command above:
+
+- `--role-name` allows you to give the role a name of your choice
+- `--assume-role-policy-document` option used to provide the path of the trust relationship file
+- `--output` option defines the output format
+- `--query` option decides what information to query and display on the terminal. Specifiying 'Role.Arn' means we want to view the ARN of the new role. The ARN stands for Amazon Resource Name, which uniquely identifies AWS resources.
+
+Reference: [aws iam create-role](https://docs.aws.amazon.com/cli/latest/reference/iam/create-role.html)
+
+Next, attach the Policy to the IAM role using the command:
+```bash
+aws iam put-role-policy --role-name UdacityFlaskDeployCBKubectlRole --policy-name eks-describe --policy-document file://iam-role-policy.json
+```
+
+In the command above:
+
+- `--role-name` takes the name of the role to associate the new policy with
+- `--policy-name` option accepts the name of the policy document
+- `--policy-document` option is used to provide the path of the policy file
+
+Reference: [put-role-policy](https://docs.aws.amazon.com/cli/latest/reference/iam/put-role-policy.html)
 
 ## Authorize Code Build using EKS RBAC
+
+IAM role is only used for authentication of valid IAM entities. All authorization permissions for interacting with your Amazon EKS cluster’s Kubernetes API are managed through the native Kubernetes RBAC (Role Based Access Control) system.
+
+Kubernetes RBAC system allows the new role access to the cluster. EKS maintains a file, [ConfigMap](https://docs.aws.amazon.com/eks/latest/userguide/add-user-role.html#aws-auth-configmap), which is used to grant the role-based access to the underlying cluster. In addition to assigning the new role to the CodeBuild service, you will have to add this new role to the ConfigMap.
+
+Only you have the sole permission to administer the cluster when you create a new cluster. No other user/AWS service will be able to perform any action. Later, if you want the CodeBuild service to interact with your cluster, you will have to make an entry into the ConfigMap. Ensure that the IAM role assumed by the CodeBuild must have the necessary permissions.
+
+Let's see the steps below:
+
+### 1. Fetch
+First, get the current ConfigMap and save it to a file:
+```bash
+# Mac/Linux - The file will be created at `/System/Volumes/Data/private/tmp/aws-auth-patch.yml` path
+kubectl get -n kube-system configmap/aws-auth -o yaml > /tmp/aws-auth-patch.yml
+# Windows users can create the aws-auth-patch.yml file in the current working directory
+kubectl get -n kube-system configmap/aws-auth -o yaml > aws-auth-patch.yml
+```
+
+### 2. Edit
+Open the `aws-auth-patch.yml` file using any editor, such as VS code editor:
+```bash
+# Mac/Linux
+code /System/Volumes/Data/private/tmp/aws-auth-patch.yml
+# Windows
+code aws-auth-patch.yml
+```
+
+and add the following group in the **data → mapRoles** section of this file:
+```yml
+ - groups:
+   	- system:masters
+   	rolearn: arn:aws:iam::<ACCOUNT_ID>:role/UdacityFlaskDeployCBKubectlRole
+   	username: build     
+``` 
+
+Don't forget to replace the <ACCOUNT_ID> with your AWS account Id. Do not copy-paste the code snippet from above. Instead, look at this [sample aws-auth-patch.yml](https://github.com/nguyentrongphuc/Document/blob/master/Repositories/Kubernetes/Containerization/examples/Final_Pipeline/aws-auth-patch.yml) file and the snapshot below to stay careful with the indentations.
+
+![image](images/maproles.png)
+File **aws-auth-patch.yml** in the editor. Notice the indentation of the highlighted part.
+
+### 3. Update
+Update your cluster's configmap:
+```bash
+# Mac/Linux
+kubectl patch configmap/aws-auth -n kube-system --patch "$(cat /tmp/aws-auth-patch.yml)"
+# Windows
+kubectl patch configmap/aws-auth -n kube-system --patch "$(cat aws-auth-patch.yml)"
+```
+
+The command above must show you `configmap/aws-auth` patched as response.
+
+### 4. Troubleshoot
+
+In case of the following error, re-run the above three steps beginning from the `kubectl get` command.
+
+Error from server (Conflict): Operation cannot be fulfilled on configmaps "aws-auth": the object has been modified; please apply your changes to the latest version and try again
 
 ## Deploy to EKS cluster
