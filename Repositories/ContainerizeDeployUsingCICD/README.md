@@ -1,5 +1,12 @@
 # Containerize and Deploy using Continuous Delivery
 
+
+
+## Table of Contents   
+1. [Overview](#overview)
+2. [Project ToDos](#project-todos)
+3. [Run the App locally](#run-the-app-locally)
+
 ## Overview
 
 The prime objective of this project is to create a CI/CD pipeline. You will associate the pipeline's one end to your Github repository, and connect the other end to the EKS cluster. You will create this CI/CD pipeline programmatically using the code (Cloudformation template file) that we will provide to you.
@@ -14,6 +21,7 @@ The diagram above shows the various stages of the Pipeline. The actions marked a
 2. **Trigger Build** - As soon as a commit happens in the Github repository, it will trigger the CodeBuild. This step requires connecting your Github account to the AWS CodeBuild service using a GitHub access token. Codebuld will build a new image for your application, and push it to a container registry.
 3. **Automatic Deployment** - The CodePipeline service will automatically deploy the application image to your Kubernetes cluster.
 4. **Service** - Kubernetes cluster will start serving the application endpoints.
+
 
 ## Project ToDos
 The current project lesson has two major parts, and each part has incremental steps to follow:
