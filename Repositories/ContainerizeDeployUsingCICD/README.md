@@ -1,11 +1,15 @@
 # Containerize and Deploy using Continuous Delivery
 
-
-
 ## Table of Contents   
 1. [Overview](#overview)
 2. [Project ToDos](#project-todos)
-3. [Run the App locally](#run-the-app-locally)
+3. [Prerequisites and App Overview](#prerequisites-and-app-overview)
+4. [Steps to run the App Locally](#steps-to-run-the-app-locally)
+5. [Containerizing and Running Locally](#containerizing-and-running-locally)
+6. [Run the app on AWS Cloud](#run-the-app-on-aws-cloud)
+7. [Create an EKS Cluster and IAM Role](#create-an-eks-cluster-and-iam-role)
+8. [Deployment to Kubernetes using CodePipeline and CodeBuild](#deployment-to-kubernetes-using-codepipeline-and-codebuild)
+9. [Adding Tests to the Build](#adding-tests-to-the-build)
 
 ## Overview
 
