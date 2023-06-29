@@ -477,13 +477,13 @@ https://www.youtube.com/watch?v=NYqmLUaCUyk
 There is a file named ci-cd-codepipeline.cfn.yml provided in your starter repo. This is the template file that you will use to create your CodePipeline pipeline and CodeBuild project Open this file, and go to the 'Parameters' section. These are parameters that will accept values when you create a stack. Ensure that the following values are used for the parameter variables:
 
 
-|Parameter|Possible Value| 
-|---|---|
-|EksClusterName|simple-jwt-api Name of the EKS cluster you created | 
-|GitSourceRepo|cd0157-Server-Deployment-and-Containerization Github repo name| 
-|GitBranch|master Or any other you want to link to the Pipeline| 
-|GitHubUser|Your Github username| 
-|KubectlRoleName|UdacityFlaskDeployCBKubectlRole We created this role earlier|
+|Parameter|Possible Value| Description |
+|---|---|---|
+|EksClusterName|simple-jwt-api| Name of the EKS cluster you created | 
+|GitSourceRepo|cd0157-Server-Deployment-and-Containerization| Github repo name| 
+|GitBranch|master| Or any other you want to link to the Pipeline| 
+|GitHubUser|nguyentrongphuc| Your Github username| 
+|KubectlRoleName|UdacityFlaskDeployCBKubectlRole| We created this role earlier|
 
 **Did you notice that we haven't saved the GitHubToken in this file?** Do not use any quotes in your values, as shown in the snapshot below. Save the changes you've made.
 
