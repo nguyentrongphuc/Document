@@ -423,15 +423,19 @@ aws iam put-role-policy --role-name UdacityFlaskDeployCBKubectlRole --policy-nam
 
 For the CodeBuild too administer the cluster, you will have to add an entry of this new role into the 'aws-auth ConfigMap'. The [aws-auth ConfigMap](https://github.com/nguyentrongphuc/cd0157-Server-Deployment-and-Containerization/blob/master/aws-auth-patch.yml) is used to grant role-based access control to your cluster.
 
-#### 3.1 Fetch - Get the current configmap and save it to a file:
+#### 3.1  Fetch - Get the current configmap and save it to a file:
 ```bash
 # Mac/Linux - The file will be created at `<current_directory>/tmp/aws-auth-patch.yml` path
+kubectl get -n kube-system configmap/aws-auth -o yaml > /tmp/aws-auth-patch.yml
+
+# Mac - I want to save aws-auth-patch.yml in <current_directory>/images/aws-auth-patch.yml
 kubectl get -n kube-system configmap/aws-auth -o yaml > ./tmp/aws-auth-patch.yml
+
 # Windows - The file will be created in the current working directory
 kubectl get -n kube-system configmap/aws-auth -o yaml > aws-auth-patch.yml
 ```
 
-#### 3.2 Edit - Open the aws-auth-patch.yml file using any editor, such as VS code editor:
+#### 3.2  Edit - Open the aws-auth-patch.yml file using any editor, such as VS code editor:
 ```bash
 # Mac/Linux
 code /System/Volumes/Data/private/tmp/aws-auth-patch.yml
@@ -450,7 +454,7 @@ Add the following group in the ***data → mapRoles*** section of this file. YAM
 
 Don't forget to replace the <ACCOUNT_ID> with your AWS account Id. Do not copy-paste the code snippet from above. Instead, look at this sample `aws-auth-patch.yml` file and the snapshot below to stay careful with the indentations.
 
-#### 3.3 Update - Update your cluster's configmap:
+#### 3.3  Update - Update your cluster's configmap:
 ```bash
 # Mac/Linux
 kubectl patch configmap/aws-auth -n kube-system --patch "$(cat ./tmp/aws-auth-patch.yml)"
@@ -522,12 +526,12 @@ Use the AWS web-console to create a stack for CodePipeline using the CloudFormat
 
 - Specify stack details - Give the stack a name. You will have a few fileds auto-populated from the parameters used in the ci-cd-codepipeline.cfn.yml file. Fill in your GitHub access token generated in the previous step. Ensure that the Github repo name, IAM role, and EKS cluster name matches with the ones you created earlier.
 
-
 - Configure stack options - Leave default, and create the stack. You can check the stack status in the CloudFormation console. It will take some time (5-15 mins) to create the stack. After the successful creation of the stack, you can see the CodeBuild and CodePipeline resources get created for you. In addition, the Cloudformation template will create a few more resources, such as an S3 bucket, a Lambda function, and others. 
 
 - Troubleshoot
 If there is an indentation error in your YAML template file, the CloudFormation will raise a "Template format error". In such a case, you will have to identify the line of error in the template, using any external tools, such as - [YAML Validator](https://codebeautify.org/yaml-validator) or [YAML Lint](https://www.yamllint.com).
 
+![image](images/cloudformation_createstack.jpeg)
 
 ### 3. Save a Secret in AWS Parameter Store
 You app running in the EKS cluster will need a secret text string for creating the JWT (Remember the `/auth` endpoint?). We need a way to pass your text secret to the app in kubernetes securly. You will be using AWS Parameter Store to do this.
