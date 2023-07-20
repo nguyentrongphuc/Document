@@ -416,7 +416,7 @@ kubectl logs mypod --all-containers
 kubectl describe deployment mydeployment
 
 # Check the pod description – kubectl describe pod
-ubectl describe pod the-pod-name
+kubectl describe pod the-pod-name
 
 # List all namespaces, all pods
 kubectl get all -A
