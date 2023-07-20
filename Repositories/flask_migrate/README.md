@@ -16,6 +16,7 @@ Sample solution: Imagine you are a database administrator for a university. You 
 
 - `pip3 install Flask-Migrate`
 
+- Check version: `pip show sqlalchemy`
 
 >```Terminal 
 > (make sure you are in the todoapp folder)

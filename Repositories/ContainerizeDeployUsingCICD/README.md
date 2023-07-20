@@ -267,6 +267,10 @@ docker run --name myContainer --env-file=.env_file -p 80:8080 myimage
 # Other useful commands
 # List running containers
 docker container ls
+
+#List all containers
+docker container ls --all
+
 docker ps
 # Stop a container
 docker container stop <container_id>
@@ -449,7 +453,7 @@ Don't forget to replace the <ACCOUNT_ID> with your AWS account Id. Do not copy-p
 #### 3.3 Update - Update your cluster's configmap:
 ```bash
 # Mac/Linux
-kubectl patch configmap/aws-auth -n kube-system --patch "$(cat /tmp/aws-auth-patch.yml)"
+kubectl patch configmap/aws-auth -n kube-system --patch "$(cat ./tmp/aws-auth-patch.yml)"
 # Windows
 kubectl patch configmap/aws-auth -n kube-system --patch "$(cat aws-auth-patch.yml)"
 ```
