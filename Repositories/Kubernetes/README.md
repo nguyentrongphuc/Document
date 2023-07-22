@@ -302,9 +302,9 @@ CloudFormation allows you to provision all the infrastructure resources that you
 ### 1. Create command
 Run the following command to create the EKS cluster:
 
-`eksctl create cluster --name eksctl-demo --nodes=2 --version=1.22 --instance-types=t2.medium --region=us-east-2`
+`eksctl create cluster --name eksctl-demo --nodes=2 --version=1.23 --instance-types=t2.medium --region=us-east-2`
 
-`eksctl create cluster --name eksctl-demo --nodes=2 --version=1.22 --instance-types=t2.micro --region=us-east-2`
+`eksctl create cluster --name eksctl-demo --nodes=2 --version=1.23 --instance-types=t2.micro --region=us-east-2`
 
 Known Issue - Sometimes, the cluster creation may fail in the `us-east-1` region. In such a case, use `--region=us-east-2` option. It is because the `us-east-1` region does not have sufficient capacity to support the cluster.
 
@@ -409,8 +409,11 @@ Now that you have now been introduced to three command-line tools that you can u
 ## Troubleshooting
 
 ```python
+
+kubectl get svc,pods,nodes
+
 # Check the logs – kubectl logs
-kubectl logs mypod --all-containers
+kubectl logs --all-containers <mypod>
 
 ### Check the deployment – kubectl describe deployment
 kubectl describe deployment mydeployment
