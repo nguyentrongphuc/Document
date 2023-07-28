@@ -653,7 +653,6 @@ curl --request GET '<EXTERNAL-IP URL>/contents' -H "Authorization: Bearer ${TOKE
 
 #### Save the external IP from above to provide to the reviewer when you will submit your project.
 
-
 ## Adding Tests to the Build
 
 The final part of this project involves adding tests to your deployment. You can follow the steps below to accomplish this.
