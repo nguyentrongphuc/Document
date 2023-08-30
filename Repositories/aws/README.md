@@ -2,7 +2,7 @@
 
 ## Terms
 
-|Term| Definition|
+|Term           | Definition|
 |---|---|
 |11 9’s guarantee||99.999999999% durability of objects over a given year. This durability level corresponds to an average annual expected loss of 0.000000001% of objects|
 |Availability Zones|A logical data center in an AWS region with redundant and separate power, networking and connectivity reducing the likelihood of two zones failing simultaneously|
