@@ -20,7 +20,16 @@
 |VPC Sharing|allows you to share subnets with other AWS accounts in your organization|
 
 
-## Purchasing Options
+## Pricing for EC2 Instances in AWS
+AWS EC2 instance pricing is straightforward, but it can quickly become complex when you take up the task of optimizing your environment to achieve the ideal cost/performance balance.
+
+- Explore OS licensing pricing and options
+- Limit the users and roles that can launch production instances
+- Choose the best instance for your workload
+- Save by moving to new generation instances when available
+
+
+### Purchasing Options
 
 |Option| How it Works|
 |---|---|
@@ -32,3 +41,32 @@
 |Savings Plans|Reduces your Amazon EC2 costs by making a commitment to a consistent amount of usage, in USD per hour, for a term of 1 or 3 years.|
 |Scheduled Instances|Purchase instances that are always available on the specified recurring schedule, for a one-year term.|
 |Spot Instances|an EC2 instance that can be acquired by bidding for a low price in exchange for the understanding that AWS can reclaim it at any time|
+
+- https://www.youtube.com/watch?v=px2Iko_Ezao&t=269s
+
+### Reserved and Spot Instances
+Reserved instances are a 1 or 3 year commitment and multiple payment options also save money,
+Spot instances can be terminated by AWS at any time with a 2 minute notification that you might not see
+On demand instances are the most expensive option and should only be used in short-term or urgent situations.
+
+- https://www.youtube.com/watch?v=rlQjQ9XKs2o&t=181s
+
+## Storage Pricing
+- Storage costs vary considerably depending on usage and requirements.
+- Applications require different types of optimized storage depending on their primary function.
+
+- https://www.youtube.com/watch?v=855-ZH2W7C0
+
+|Term|	Definition|
+|---|---|
+|Edge Cache|	A high-speed data storage layer which stores a subset of data, typically transient in nature, close to the end user so that future requests for that data are served up faster
+|EBS|	Elastic Block Store - cloud-based and pre-allocated linux-based block storage system provided by Amazon Web Services (AWS) that is best used for storing persistent data
+|EFS|	Elastic File System - a simple, scalable, elastic, and encrypted file storage system that can be used by concurrent compute resources in the AWS cloud and on-premises
+|HDD|	Category of EBS hard disk drive. Can be throughput optimized (workhorse) or cold (infrequently scanned)
+|Lifecycle Policies|	Automate the actions you want to take on an object in an S3 bucket over its lifetime, for example, move them to another storage class, archive them after a number of days or years, or delete them.
+|S3|	Amazon Simple Storage Service is general purpose object storage used for frequently accessed files
+|S3 Endpoints|	A private connection between your VPC and S3 that doesn’t require internet access, potentially reducing NAT gateway costs
+|SSD|	Category of EBS solid-state drive. Can be IOPS optimized for databases (fast) or general-purpose for boot volumes and dev/test systems
+|Storage Cache|	A high-speed data storage layer that stores a subset of typically transient data
+|Tagging|	Allows you to name and classify S3 buckets. AWS can provide a usage and cost report based on tags
+
