@@ -263,7 +263,7 @@ AWS Auto Scaling monitors your applications based on criteria you specify and au
 |3 tiers for hot, warm or cold data|	Pay whether you use it or not|	Designed for high throughput and low latency|
 
 
-New Terms
+### New Terms
 |Term|	Definition|
 |---|---|
 |Availability|	A storage volume’s ability to deliver data upon request|
@@ -274,3 +274,45 @@ New Terms
 |Performance|	Refers to the number of IOPS or the amount of throughput (measured in megabytes per second) that the storage volume can deliver|
 |Throughput|	Measurement of data that can be transferred from one location to another in a given amount of time used to measure the performance of hard drives and RAM as well as Internet and network connections|
 |Transient or Ephemeral Data|	Data created within an application session, and at the end of the session, it is discarded or reset back to its default and not stored|
+
+## EBS and EFS
+
+https://www.youtube.com/watch?v=h2KSnA9eeiU
+
+### Amazon EBS or Elastic Block Storage is provisioned capacity and performance
+- You pay for the EBS storage even if it is unattached or has very low read/write activity.
+- Audit your environment to detect and delete obsolete EBS volumes and adjust the size of your provisioned storage to match your actual use.
+- EBS volumes attached to EBS optimized instances can be accessed using dedicated networks for better throughput
+- Non-EBS optimized instances share the network with all the rest of the local traffic
+
+### Amazon EFS or Elastic File Storage has optimization built into the service
+- Distributed to make it highly available, durable, and scalable.
+- Can be mounted on up to thousands of Amazon EC2 instances concurrently
+- Supports encryption in transit and encryption at rest with a minimal effect on I/O latency and throughput
+
+### Key Points
+- Amazon Elastic File System is a scalable NFS file system that grows and shrinks elastically as you add and remove files. There is no need to provision EFS storage, and you only pay for what you use.
+- AWS EFS files can be automatically moved to a lower infrequently accessed tier (EFS-IA) after they haven’t been accessed for a certain period of time.
+- EFS supports any number of concurrent EC2 instance connections. Thousands of connections is not uncommon.
+
+- https://www.youtube.com/watch?v=EtK3MjeYS94&t=191s
+
+## Elastic Block Storage - EBS
+- https://www.youtube.com/watch?v=IwmMixJDXoE
+
+### Key Points
+- EBS volumes are highly durable block storage hard drives that can either be created independently on the EBS management page or created with a new EC2 instance
+- EBS volumes can be attached to and detached from instances and can be used just like any other hard drive- you can run databases, create file systems, and move them between instances
+- EBS volumes are provisioned storage, so costs are incurred whether it is attached to an EC2 instance or not. Be mindful of idle EBS volumes and make sure they are necessary before you maintain unused volumes for long periods of time.
+- EBS snapshots are point-in-time backups of EBS volumes saved to S3 and serve as a lower cost alternative to maintaining idle EBS volumes
+- AWS EBS provides SSD or HDD volumes. SSD are for low latency/high performance applications like databases and HDD are for high throughput applications like big data workloads and infrequently accessed files in cold storage.
+- Costs with EBS HDD are considerably lower than EBS SSD
+
+
+|---|Solid State Drive (SSD)||Solid State Drive (SSD)|Hard Disk Drive (HDD)|Hard Disk Drive (HDD)|
+|---|---|---|---|---|
+|Type|	General Purpose| Provisioned IOPS|	Throughput Optimized|	Cold|
+|Cost|	$$$|	$$$$|	$$|	$|
+|Performance|	++|	++++|	++|	+|
+|Use Case|	Boot volumes, Low-latency apps|	I/O intensive databases, Mission critical applications|	Big Data, Log processing| Infrequently accessed files|
+
