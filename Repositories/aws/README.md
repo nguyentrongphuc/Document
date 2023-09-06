@@ -70,3 +70,76 @@ On demand instances are the most expensive option and should only be used in sho
 |Storage Cache|	A high-speed data storage layer that stores a subset of typically transient data
 |Tagging|	Allows you to name and classify S3 buckets. AWS can provide a usage and cost report based on tags
 
+## AWS Managed Databases
+
+|Term|	Definition
+|---|---|
+|AWS Aurora|	fully managed MySQL-compatible relational database engine that combines the speed and availability of commercial databases with the simplicity and cost-effectiveness of open source databases. Aurora is VERY fast-10 times as fast as Microsoft SQL, but slightly more costly
+|AWS DynamoDB|	is a very fast scalable NoSQL database service that manages distri­buted replicas of your data for high availa­bility
+|AWS RDS|	simplifies the process of configuring, operating, and scaling familiar relational databases in the cloud. Provides cost-efficient and resizable capacity for an industry-standard relational database and manages common database administration tasks
+|BLOBS (Binary Large Objects)|	binary data including videos, images, gifs, and audio files
+|BYOL|	A licensing model that lets companies use their licenses flexibly, whether on-premise, or in the cloud
+|CLOBs (Character Large Objects)|	text data including text files, PDF documents, word processing documents
+|DBA|	A Database Architect is responsible for designing, deploying and managing the data architecture for an organization.
+|NoSQL Databases (a.k.a. Non-relational Databases)|	Built for specific data models with flexible schemas for building modern applications and widely recognized for their ease of development, functionality, and performance at scale
+|Read Replica|	A read-only copy of a database instance; applications can connect to a read replica just as they would to any DB instance
+|AWS Outposts|	A hybrid cloud service that includes a physical AWS compute and storage appliance that resides on -premises in the customer datacenter
+|Hybrid Cloud|	A mix of public cloud, private cloud on-premise data centers and edge locations
+
+## Implementing Hybrid Cloud
+- https://www.youtube.com/watch?v=hoQMkFTdOdI
+- https://www.youtube.com/watch?v=dbk8TCa5tnI&t=1s
+
+- Connecting the on premises data center to the cloud provider requires networking expertise and support from the network team and the cloud technology team
+- Connectivity is secured via customer managed gateway and VPN or by AWS Direct Connect
+- Data is encrypted end-to-end
+- The VPC provides and manages all of the connections into the cloud environment and resources
+
+- Public subnets  
+    - Have an internet gateway for routes out to the internet from the VPC
+    - Used for public facing servers like web servers, bastion hosts, proxies, and VPNs
+- Private subnets
+    - No route to the internet -- but can access the internet using a NAT gateway which is a one-way connection out to the internet
+    - Used for backend servers like databases and internal load balancers
+
+- Hybrid Cloud Diagram
+    + In this environment, we have:
+        + two public cloud providers (AWS and GCP)
+        + one corporate data center.
+    + The cloud environments are connected to the corporate data center through a VPN connection.
+    + The AWS VPN gateway is managed on the AWS side by the AWS Cloud architects and network engineers
+    + The corporate gateway is managed by the on-premises network engineers. - - The gateways are secured via their local protocols and connected via a secure VPN connection.
+    + This environment allows the Cloud to share data and resources with the corporate on-premises colo data center.
+
+![image](images/cand-c2-l1-hybid-cloud-diagram.jpg)
+
+[What is Hybrid Cloud](https://www.netapp.com/hybrid-cloud/what-is-hybrid-cloud/)
+[Hybrid Cloud with AWS](https://aws.amazon.com/hybrid/)
+[Hybrid Cloud Storage](https://aws.amazon.com/products/storage/hybrid-cloud-storage/)
+[AWS Outposts](https://aws.amazon.com/outposts/)
+[AWS Storage Gateway](https://aws.amazon.com/storagegateway/)
+[AWS DataSync](https://aws.amazon.com/datasync/)
+[AWS Snowball Edge](https://aws.amazon.com/snowball/)
+[Hybrid Cloud on AWS (video)](https://pages.awscloud.com/Introduction-to-Hybrid-Cloud-on-AWS_0315-CMP_OD.html)
+
+## Autoscaling
+- Scaling can add/remove system resources (vertical scaling) or add/remove nodes or workers (horizontal scaling)
+- Scalable AWS resources include
+    + EC2
+    + EC2 Spot Fleets
+    + ECS
+    + DynamoDB
+    + AWS Aurora
+
+|Vertical Scalin|	Horizontal Scaling|
+|---|---|
+|Scaling Up and Down|	Scaling Out and In|
+|Adding more resources to the system (memory and CPU)|	Adding more nodes or workers|
+|Change size of EC2 Instances|	Change number of EC2 Instances|
+
+
+- Scaling out is the process of adding more resources to spread out a workload. An example would be adding servers to a load balancer to share a workload. Scaling up is the process of making a resource larger and more powerful in response to an increased workload. An example would be adding RAM or CPUs to a server so it can manage an increase in demand.
+
+- Scaling out is also referred to as horizontal scaling
+
+- Scaling up is also referred to as vertical scaling
