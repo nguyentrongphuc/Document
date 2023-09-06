@@ -307,7 +307,12 @@ https://www.youtube.com/watch?v=h2KSnA9eeiU
 - EBS snapshots are point-in-time backups of EBS volumes saved to S3 and serve as a lower cost alternative to maintaining idle EBS volumes
 - AWS EBS provides SSD or HDD volumes. SSD are for low latency/high performance applications like databases and HDD are for high throughput applications like big data workloads and infrequently accessed files in cold storage.
 - Costs with EBS HDD are considerably lower than EBS SSD
+- Before extending a file system that contains data, it is a best practice to create a snapshot of the volume in case you need to roll back your changes. We had an empty volume, so we didn’t have a need to take a snapshot today
+- We no longer need to stop the EC2 instance and detach the EBS volume to resize it. EBS volumes can be resized while running, even if the volume is the root volume of a running instance.
+- After you increase the size of an EBS volume, you must use file system–specific commands to extend the file system to the larger size. Remember: The volume must be formatted for the operating system it is attached to and mounted prior to use.
+- New volumes must also have a file system installed prior to use.
 
+- https://www.youtube.com/watch?v=RwyiKpi4-Cg
 
 |   |Solid State Drive (SSD)|Solid State Drive (SSD)|Hard Disk Drive (HDD)|Hard Disk Drive (HDD)|
 |---|---|---|---|---|
@@ -315,4 +320,27 @@ https://www.youtube.com/watch?v=h2KSnA9eeiU
 |Cost|	$$$|	$$$$|	$$|	$|
 |Performance|	++|	++++|	++|	+|
 |Use Case|	Boot volumes, Low-latency apps|	I/O intensive databases, Mission critical applications|	Big Data, Log processing| Infrequently accessed files|
+
+## Archive Performance
+
+### Key Points
+- AWS S3 Glacier provides S3 quality durable storage with delayed retrieval times in exchange for lower costs. Standard retrieval times can take 3-5 hours
+- AWS S3 IA is Amazon’s middle archive tier offering standard S3 object retrieval speeds for a lower cost. Objects in this storage tier are seldom retrieved, but can be brought back immediately
+- Expedited Retrieval is a service to retrieve files from Glacier archive in minutes instead of hours. It can be purchased on demand or provisioned in advance to ensure availability.
+
+### AWS Archive Performance
+|   |AWS S3|	AWS IA|	AWS Glacier|
+|---|---|---|---|
+|Cost|	$$$|	$$|	$|
+|Retrieval|	Immediate|	Immediate|	Up to several hours|
+|Use Case|	General purpose|	Backups, disaster recovery|	Long-term, rarely accessed|
+
+### New Terms
+|Term|	Definition|
+|---|---|
+|S3 Glacier|	Storage service optimized for infrequently used, or "cold data." Glacier is a low-cost storage service that provides durable storage with security features for data archiving and backup|
+|S3 IA|	S3 storage class for data that is accessed less frequently, but requires rapid access when needed.|
+|Expedited Retrieval|	Faster access to your data when you need to have almost immediate access to your information within 1-5 minutes. This retrieval type can be used for archives up to 250MB.|
+|Retrieval Job|	An asynchronous operation in which you first initiate a job, and then download the output after the job completes|
+|Provisioned Capacity|	Paying up front to ensure that S3 expedited retrieval capacity is available when you need it|
 
