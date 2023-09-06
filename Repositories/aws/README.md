@@ -309,7 +309,7 @@ https://www.youtube.com/watch?v=h2KSnA9eeiU
 - Costs with EBS HDD are considerably lower than EBS SSD
 
 
-|---|Solid State Drive (SSD)||Solid State Drive (SSD)|Hard Disk Drive (HDD)|Hard Disk Drive (HDD)|
+|   |Solid State Drive (SSD)|Solid State Drive (SSD)|Hard Disk Drive (HDD)|Hard Disk Drive (HDD)|
 |---|---|---|---|---|
 |Type|	General Purpose| Provisioned IOPS|	Throughput Optimized|	Cold|
 |Cost|	$$$|	$$$$|	$$|	$|
