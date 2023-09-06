@@ -265,6 +265,7 @@ AWS Auto Scaling monitors your applications based on criteria you specify and au
 
 New Terms
 |Term|	Definition|
+|---|---|
 |Availability|	A storage volume’s ability to deliver data upon request|
 |Data Durability|	Refers to long-term data protection, so the stored data does not suffer from degradation or some other corruption. |Durability is focused on redundancy, so data is never lost or compromised|
 |Elastic Block Store|	High performance block storage service designed for use with Amazon Elastic Compute Cloud (EC2) for both throughput and transaction intensive workloads|
