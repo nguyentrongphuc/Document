@@ -224,3 +224,41 @@ Glossary
 - Optimize until your performance meets benchmarks
 
 ![image](images/cand-c2-l2-instance-types.jpg)
+
+
+## Scaling, Elasticity, and Bursting
+The three primary functions built in to AWS to address increases in compute demand are bursting, elasticity and scaling
+
+Burstable instances provide your application a baseline level of CPU performance with the ability to burst to a higher level when required by your workload. These instances are great for workloads like fast interactive applications, moderately sized databases, and lower lifecycles like Development and test.. AWS burstable instances are T2 and T3 instance types.
+Elasticity is the ability to acquire resources as you need them, and elasticity is ALSO releasing resources when you no longer need them. A service isn’t elastic unless it releases resources it no longer needs, another major cloud differentiator.
+AWS Auto Scaling monitors your applications based on criteria you specify and automatically adjusts capacity to maintain availability and performance. Autoscaling is an example of scaling up when you add servers as you need them, and scaling down when you wind down and terminating servers you no longer need
+![image](images/cand-c2-l2-burstable.jpg)
+
+## Storage and Latency
+
+### Simple Storage Service (S3)
+- Highly durable object storage optimized for media files
+- Guarantees 99.999999999% availability
+
+### Elastic Block Store (EBS)
+- EC2 attached block storage comprised of workload specific hard drives
+- Must be provisioned in advance, so you may end up paying for storage you are not using
+
+### Elastic File System( EFS)
+- Elastic file storage for named files that require a file structure, such as big data workloads and web sites.
+- Truly elastic and it will expand and contract as you use it.
+
+### Best Practices for Optimized Object Storage
+- Spread connection requests to maximize the accessible bandwidth
+- Access in the same AWS Region when possible to reduce latency and data transfer costs
+- Use AWS S3 Transfer Acceleration for fast and secure data transfer over long distances
+- Use Instance Store for ephemeral storage
+- Always delete unused storage volumes and obsolete snapshots!!!
+
+### Storage Solutions
+|Object Storage|	Block Storage|	File Storage|
+|---|---|---|
+|General purpose for media content, static HTML and archived documents|	Data that requires long-term persistence and quick access|	Scalable file storage for big data, media processing, content management etc.|
+|Highest level of durability|	Must be provisioned in advance|	No need to provision in advance|
+|3 tiers for hot, warm or cold data|	Pay whether you use it or not|	Designed for high throughput and low latency|
+
