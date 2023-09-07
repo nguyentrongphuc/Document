@@ -325,7 +325,9 @@ https://www.youtube.com/watch?v=h2KSnA9eeiU
 
 ### Key Points
 - AWS S3 Glacier provides S3 quality durable storage with delayed retrieval times in exchange for lower costs. Standard retrieval times can take 3-5 hours
-- AWS S3 IA is Amazon’s middle archive tier offering standard S3 object retrieval speeds for a lower cost. Objects in this storage tier are seldom retrieved, but can be brought back immediately
+- AWS S3 IA is Amazon’s middle archive tier offering 
+
+standard S3 object retrieval speeds for a lower cost. Objects in this storage tier are seldom retrieved, but can be brought back immediately
 - Expedited Retrieval is a service to retrieve files from Glacier archive in minutes instead of hours. It can be purchased on demand or provisioned in advance to ensure availability.
 
 ### AWS Archive Performance
@@ -367,6 +369,8 @@ https://www.youtube.com/watch?v=2gihEFhuuv0
 |Points of Presence|	Made up of Edge locations and regional edge caches|
 
 ## Network Optimization
+- https://www.youtube.com/watch?v=JYjGqu5nA34&t=272s
+
 ### Key Points
 - Networking is essential to AWS - without the network, there is no cloud.
 - AWS meets the challenge of the unpredictability of the public internet and ISPs by providing services like VPC endpoints, S3 Content Acceleration, and CloudFront that use the AWS network backbone to improve network performance.
@@ -395,5 +399,57 @@ https://www.youtube.com/watch?v=2gihEFhuuv0
 |Latency Routing|	Configuration where DNS requests are routed from the AWS region that provides the lowest latency|
 |Route 53|	A highly available and scalable cloud Domain Name System (DNS) web service|
 |VPC|	A logically isolated section of the AWS Cloud where you can launch AWS resources in a virtual network you define|
+
+
+## Glossary
+|Term|	Definition|
+|---|---|
+|Auto Scaling Group|	AWS EC2 instances that are treated as a logical grouping for the purposes of automatic scaling and management|
+|Availability|	A storage volume’s ability to deliver data upon request|
+|AWS Direct Connect|	A cloud service solution that makes it easy to establish a dedicated network connection from your premises to AWS|
+|AWS DynamoDB|	A key-value and document database that delivers single-digit millisecond performance at any scale. It's a fully managed, multiregion, multimaster, durable database with built-in security, backup and restore, and in-memory caching for internet-scale applications|
+|AWS Global Accelerator|	Service that improves the availability and performance of your applications with local or global users. It provides static IP addresses that act as a fixed entry point to your application endpoints|
+|AWS RDS|	A web service that makes it easier to set up, operate, and scale a relational database in the cloud|
+|AWS VPC Endpoints|	Used to privately connect your VPC to other AWS services and endpoint services|
+Burstable Performance Instances|	T3, T3a, and T2 instances, are designed to provide a baseline level of CPU performance with the ability to burst to a higher level when required by your workload|
+|CloudFront|	Uses a global network of 216 Points of Presence To deliver content to end users with lower latency|
+|Consumer|	Receives messages from an SQS queue|
+|Content Delivery Network|	A series of distributed servers that deliver content to users based on location|
+|Data Durability|	Refers to long-term data protection, so the stored data does not suffer from degradation or some other corruption. Durability is focused on redundancy, , sodata is never lost or compromised|
+|Decoupling|	Refers to components remaining autonomous and unaware of each other as they complete their work for some greater output|
+|Edge Cache|	Servers used to store content closer to end users|
+|Edge Location|	Where end users access services provided by AWS|
+|Elastic Block Store|	High performance block storage service designed for use with Amazon Elastic Compute Cloud (EC2) for both throughput and transaction intensive workloads|
+|Elastic File System|	Fully managed elastic NFS file system for use with AWS Cloud services and on-premises resources. It is built to scale on demand to petabytes without disrupting applications, growing and shrinking automatically|
+Elasticity|	The ability to grow or shrink infrastructure resources dynamically as needed to automatically adapt to workload changes, maximizing the use of resources and resulting in savings in infrastructure costs|
+|Expedited Retrieval|	Faster access to your data when you need to have almost immediate access to your information within 1-5 minutes. This retrieval type can be used for archives up to 250MB.|
+|FIFO|	Queues designed to ensure that the order in which messages are sent and received is strictly preserved and that each message is processed exactly once- First In, First Out|
+|GPU (Graphics Processing Unit)|	A programmable chip used to manage and boost the performance of video and graphics. GPU renders images, animations, and video for the computer's screen|
+|Instance Family|	Six distinct classifications of EC2 instance optimized for different types of applications|
+|IOPS|	Input/output operations per second (IOPS, pronounced eye-ops) is an input/output performance measurement used to benchmark computer storage devices like hard disk drives (HDD), solid state drives (SSD)|
+|Latency|	Generally refers to a transport or transfer delay|
+|Latency Routing|	Configuration where DNS requests are routed from the AWS region that provides the lowest latency|
+|Launch Configuration|	an instance configuration template that an Auto Scaling group uses to launch EC2 instances|
+|Lift and Shift|	The process of moving your application from an on-premises environment to the cloud without making any major changes to the code|
+|Non-Relational Database|	A database that does not use the tabular schema of rows and columns found in most traditional database systems. Instead, non-relational databases use a storage model that is optimized for the specific requirements of the type of data being stored|
+|Optimized Instances|	Instance types optimized to fit different use cases. Instance types comprise varying combinations of CPU, memory, storage, GPU, and networking capacity and give you the flexibility to choose the appropriate mix of resources for your applications|
+|Performance|	Refers to the number of IOPS or the amount of throughput (measured in megabytes per second) that the storage volume can deliver|
+|Placement Groups|	Influence the placement of a group of interdependent instances to meet the needs of your workload|
+|Points of Presence|	Made up of Edge locations and regional edge caches|
+|Predictive Scaling|	A feature of AWS Auto Scaling uses machine learning to schedule the right number of EC2 instances in anticipation of approaching traffic changes. Predictive Scaling predicts future traffic, including regularly-occurring spikes, and provisions the right number of EC2 instances in advance|
+|Producer|	Sends messages to an SQS queue|
+|Provisioned Capacity|	Paying up front to ensure that S3 expedited retrieval capacity is available when you need it|
+|Read Replica|	A copy of the master db that reflects changes to the master instance in almost real time|
+|Relational Database|	A set of formally described tables from which data can be accessed or reassembled in many different ways without having to reorganize the database tables|
+|Retrieval Job|	An asynchronous operation in which you first initiate a job, and then download the output after the job completes|
+|Route 53|	A highly available and scalable cloud Domain Name System (DNS) web service|
+|S3 Glacier|	Storage service optimized for infrequently used, or "cold data." Glacier is a low-cost storage service that provides durable storage with security features for data archiving and backup|
+|S3 IA|	S3 storage class for data that is accessed less frequently, but requires rapid access when needed.|
+|SQS|	A fully managed message queuing service that enables you to decouple and scale microservices, distributed systems, and serverless application|
+|Target Utilization|	The threshold we define at how much utilization (in %) we want auto scaling to take place|
+|Throughput|	Measurement of data that can be transferred from one location to another in a given amount of time used to measure the performance of hard drives and RAM as well as Internet and network connections|
+|Transient or Ephemeral Data|	Data created within an application session, and at the end of the session, it is discarded or reset back to its default and not stored|
+|VPC|	A logically isolated section of the AWS Cloud where you can launch AWS resources in a virtual network you define|
+|Workload|	A collection of resources and code that delivers business value, such as a customer-facing application or a backend process
 
 
