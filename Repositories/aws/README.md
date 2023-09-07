@@ -344,3 +344,56 @@ https://www.youtube.com/watch?v=h2KSnA9eeiU
 |Retrieval Job|	An asynchronous operation in which you first initiate a job, and then download the output after the job completes|
 |Provisioned Capacity|	Paying up front to ensure that S3 expedited retrieval capacity is available when you need it|
 
+## CloudFront and Edge Locations
+
+https://www.youtube.com/watch?v=2gihEFhuuv0
+
+
+### Key Points
+- Content Delivery Networks are systems of distributed proxy servers and Data Centers that deliver content based on the fastest route to the user's location
+- CloudFront is Amazon’s CDN delivering content via a network of AWS data centers called Edge locations.
+- Edge locations are located in most major cities around the world to deliver AWS content to users with reduced latency
+- CloudFront uses the existing Amazon network to avoid exposure to the slower public internet routes and deliver content faster via AWS Edge locations.
+- Content stays in the edge location for 24 hours unless an expiration time has been configured previously
+![image](images/cand-c2-l2-edge.jpg)
+
+### New Terms
+|Term|	Definition|
+|---|---|
+|Content Delivery Network|	A series of distributed servers that deliver content to users based on location|
+|CloudFront|	Uses a global network of 216 Points of Presence To deliver content to end users with lower latency|
+|Edge Cache|	Servers used to store content closer to end users|
+|Edge Location|	Where end users access services provided by AWS|
+|Points of Presence|	Made up of Edge locations and regional edge caches|
+
+## Network Optimization
+### Key Points
+- Networking is essential to AWS - without the network, there is no cloud.
+- AWS meets the challenge of the unpredictability of the public internet and ISPs by providing services like VPC endpoints, S3 Content Acceleration, and CloudFront that use the AWS network backbone to improve network performance.
+- Over the years, AWS has built out infrastructure and services to improve their own internal network performance to mitigate and reduce network challenges that may be out of their control
+
+### AWS Load Balancers
+- Application Load Balancers
+    + Best suited for load balancing of web traffic
+    + Assigns load based on the performance attributes of your running code and not necessarily the traffic or load on your server
+    + Supports a round-robin load balancing algorithm
+- Network Load Balancers
+    + Best for balancing TCP and UDP traffic
+    + Can route traffic based on IP data (ideal for whitelisting applications)
+    + Can handle millions of requests per second while maintaining millisecond-low latencies
+    + Optimized to handle extreme and unstable traffic patterns
+- Classic Load balancers
+    + Distribute incoming network traffic across multiple EC2 instances in as many AZs as you require for performance
+
+### New Terms
+|Term|	Definition|
+|---|---|
+|AWS Direct Connect|	A cloud service solution that makes it easy to establish a dedicated network connection from your premises to AWS|
+|AWS Global Accelerator|	Service that improves the availability and performance of your applications with local or global users. It provides static IP addresses that act as a fixed entry point to your application endpoints|
+|AWS VPC Endpoints|	Used to privately connect your VPC to other AWS services and endpoint services|
+|Latency|	Generally refers to a transport or transfer delay|
+|Latency Routing|	Configuration where DNS requests are routed from the AWS region that provides the lowest latency|
+|Route 53|	A highly available and scalable cloud Domain Name System (DNS) web service|
+|VPC|	A logically isolated section of the AWS Cloud where you can launch AWS resources in a virtual network you define|
+
+
