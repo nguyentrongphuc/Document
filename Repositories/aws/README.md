@@ -453,3 +453,184 @@ Elasticity|	The ability to grow or shrink infrastructure resources dynamically a
 |Workload|	A collection of resources and code that delivers business value, such as a customer-facing application or a backend process
 
 
+## What obstacles can you expect when rearchitecting an application for the cloud?
+
+The decision to re-architect an application is not made lightly. All of the stakeholders on the project need an advocate- including the application! Budget estimates, timelines, and testing protocols will often be pain points when you are rebuilding an application. Money is a major factor- for large and complex enterprise applications, developer time and qa testing can run into the millions of dollars. You can also expect timelines to slip. I’m sorry, but its true. No matter how far out you project your development schedule, timeline pressure will be an obstacle. You can always hope for the best, but I have never seen a software project ship on or before schedule, and I've been around quite a while. The third obstacle I would anticipate is a term called “scope creep” where your original plans for the redesign and development are waylaid by new and updated plans along the way. Plans that nobody budgeted for or calculated into the timeline. The scope of the project changes along with changes to the vendor service offering- if AWS starts offering a brand new service that can be used to make the application perform better for less money, why not add it to the scope? Well, one good reason not to change the scope is because you want to ship your software on time. AWS, as a tech company, will always release new and improved services. Its up to you as the architect to decide if you are going to stick with you plan and stay the course to completion, or allow the scope of the project to get away from you by adding new services and features that weren’t a part of the original plan and seemingly never get your application out the door. I would vote for locking down the scope, and turning a blind eye to the tempting upgrades, but when it comes to your projects, it will be up to you!
+
+
+## Serverless Costs
+https://www.youtube.com/watch?v=LdMybkwf82U&t=259s
+
+### Key Points
+- Lambda requests are billed based on
+    - number of requests/function invocations
+    - duration of compute time and allocated memory
+- Duration is billed per 100ms
+- Lambda works better for small scale apps
+- EC2 works better for long-running functions
+- Lambda functions are stateless and run in short-lived containers
+- There is a "cold-start" delay after a period of inactivity but that can be avoided by using a keep warm service
+- Serverless can also bring cost savings because fewer people are needed for operations support
+
+### When to Use Lambda
+- AWS Lambda is optimal for applications with irregular usage patterns and lulls between spikes in activity
+- AWS Lambda is not a good choice for applications with regular, consistent, or steady workloads and long running functions. It might end up being more costly than EC2 instances.
+- Consider the considerable cost of re-architecting an application when deciding if AWS Lambda is a good choice. It might be!
+
+### New Terms
+|Term|	Definition|
+|---|---|
+|Cold Start|	The delayed response that occurs when a new lambda instance receives its first request|
+|Dashbird.io|	A 3rd party serverless observability platform built to manage serverless application|
+|FaaS|	Category of serverless cloud computing via serverless architectures|
+|GB/sec|	Measure of compute time used to calculate costs in AWS lambda|
+|Iaas|	Online platforms that provide computing services over the internet|
+|Keep Warm|	A periodic ping or function call to lambdas to keep them on in order to avoid the delay of cold starts|
+
+### Lambda costs
+- Use the [Lambda Pricing Calculator](https://s3.amazonaws.com/lambda-tools/pricing-calculator.html) and do NOT include the Free Tier
+- Assume:
+    - 20 million functions calls per month
+    - 512 MB of Memory
+    - Execution time of 50ms
+### EC2 Costs
+- Find pricing for on-demand instances at AWS On-Demand Instance Pricing: https://aws.amazon.com/ec2/pricing/on-demand/
+- Find pricing for 1 year reserved instances at Reserved Instance Pricing: https://aws.amazon.com/ec2/pricing/reserved-instances/pricing/
+- Assume:
+    - 1 M5.large EC2 instance
+    - Runs for one month
+
+## Key Points About API Gateway
+- An API is an interface to your application that exposes parts of your application or data for integration or sharing with another application.
+- AWS API Gateway is a managed service that removes the administrative work from the job of publishing APIs by publishing, maintaining, managing, and securing APIs.
+- API Gateway integrates with AWS Lambda, AWS SNS, AWS IAM, and Cognito Identity Pools, allowing for fully managed authentication and authorization
+- API Gateway works with lambda by sitting in between the user’s API request and the Lambda running compute functions on the back end.
+
+## Key Points About DynamoDB
+- DynamoDB is a fast, high-performing NoSQL database that scales elastically
+- DynamoDB tables have a primary key, but the are not relational, making them an excellent option for varied, unstructured data
+- DynamoDB is tightly integrated with the AWS Serverless ecosystem and is hosted on a series of distributed managed servers, which increases database availability and performance, and facilitates automatic scaling
+- Lambda functions can be triggered by an update to a DynamoDB table via the activity logs
+- DynamoDB works well for applications that use self-contained data objects, but is usually too pricey for applications with high traffic of large objects
+
+## Intro to IaC
+- https://www.youtube.com/watch?v=afGqjDtU1c0&t=257s
+- The old way of managing hardware in the server room often led to miscommunication due to a lack of centralized logs and the gap between business owners and infrastructure engineers. Servers could run for years with unused or decommissioned software, having had nobody utilize them for a long time
+- Moving applications to virtual servers meant more tech for engineers to master, but because virtual servers are managed with dashboards and their health and use can be easily monitored, virtual server management is easier for engineers than in the server room
+- Defining your infrastructure in code reduces error and effort by providing a visual representation of your cloud services in code that can be run to create, modify, and destroy infrastructure.
+- Infrastructure as code is auditable and repeatable, which is perfect for large cloud implementations under the management of Cloud Governance where starting over for every new project or lifecycle is a tedious manual job with the potential for errors and compliance deviations
+
+
+## Creating an EC2 Instance at the Command line
+- Type out the code for creating an instance at the command line to create the instance:
+- Sample instance creation command:
+    + Replace the “xxxxxxxx” with the values from your AWS account 
+
+```terminal  
+bash aws ec2 run-instances --image-id ami-xxxxxxxx --count 1 --instance-type t2.micro --key-name MyAWSKeyPair --security-group-ids sg-xxxxxxxx --subnet-id subnet-xxxxxxxx 2. Switch to the AWS Console and view the instance 3. Return to the CLI and terminate the instance via the command line
+```
+
+- Sample instance termination command:
+    + Replace the “xxxxxxxx” with the values from your AWS account 
+`bash aws ec2 terminate-instances --instance-ids i-xxxxxxxx`
+
+- Switch to the console and confirm that the instance has been terminated
+
+## AWS CLI
+
+- https://docs.aws.amazon.com/cli/latest/reference/rds/#cli-aws-rdsl
+- [AWS Command Line Interface](https://aws.amazon.com/cli/)
+- [AWS CLI Command Reference](https://docs.aws.amazon.com/cli/latest/)
+
+Here is the code I used to create an RDS database from the command line:
+
+```terminal
+aws rds create-db-instance \
+    --allocated-storage 20 --db-instance-class db.t2.micro \
+    --db-instance-identifier myinstancename \
+    --engine postgres \
+    --master-username myname \
+    --master-user-password secret99 --no-publicly-accessible
+```
+Don't forget to return to the CLI to delete your database!
+
+```terminal
+aws rds  delete-db-instance \
+     --db-instance-identifier myinstancename \
+     --skip-final-snapshot
+```
+
+## Terraform
+
+- Terraform is an Open source Infrastructure as code software tool 
+- Terraform code is written in Hashicorp configuration language or HCL, a structured configuration language that is human and machine readable for use at the command line 
+- Terraform is cloud neutral, meaning the APIs it provides do not lock the user to any one particular cloud provider. 
+- Learning about Infrastructure as Code and Terraform is a great step toward advancing your career in cloud architecture
+- https://developer.hashicorp.com/terraform/downloads
+
+- Terraform has its own configuration language,Hashicorp Configuration Language (HCL), that it uses primarily to declare resources.
+- HCL is declarative, meaning you use it to describe your desired infrastructure and Terraform will figure out how to create what you requested in the code
+- The set of files used to describe infrastructure in Terraform is referred to as a Terraform configuration
+- Terraform configuration files are named with the .tf file extension. A JSON-based varian of Terraform language uses the .tf.json file extension
+- A Terraform configuration can be as simple as a single root module (folder) containing one .tf file.
+
+### TF Variables and Modules
+- https://www.youtube.com/watch?v=nrLczX3lDvw
+- Terraform modules ensure that the configurations in your lifecycle environments are the same.
+- Terraform modules abstract your infrastructure descriptions by describing it as architecture and not actual objects.
+- Terraform modules are a set of Terraform configuration files in a folder.
+- Terraform modules can be reused in different environments, so that the code in the environments is the exact same.
+- A Terraform module best practice is to have separate git repositories for reusable modules and live infrastructure and specify a versioned module git URL in the source parameter instead of your local filesystem.
+- Terraform modules can be created and shared among Terraform users on [Terraform Registry](https://registry.terraform.io) or in private registries. Using premade modules is a good way to get started.
+- [Terraform Modules](https://developer.hashicorp.com/terraform/tutorials/modules/module-use)
+- [Creating Modules](https://developer.hashicorp.com/terraform/language/modules/develop)
+- `main.tf` to create AWS infrastructure with Terraform
+
+```terraform
+provider "aws" {
+  access_key = "<Your Access Key>"
+  secret_key = "<Your Secret Key>"
+  region = "us-east-1"
+}
+ 
+resource "aws_instance" "Udacity" {
+  count = "2"
+  ami = "ami-0323c3dd2da7fb37d"
+  instance_type = "t2.small"
+  tags = {
+    name = "Udacity Terraform"
+  }
+}
+```
+
+### TF State Management
+- https://www.youtube.com/watch?v=ce6XFJi60e8&t=169s
+- https://www.youtube.com/watch?v=ADn1pBCI45I
+
+#### Key Points
+- The Terraform state file, `terraform.tfstate`, is how Terraform is able to keep track of the elements of your infrastructure it is responsible for. The state file allows Terraform to find the resources it has previously created or updated and proceed to carry out the current instruction
+- `terraform.tfstate` is a JSON file that maps the instructions in your configuration files to the actual resource in the real world and maintains all of the metadata about the resource so it can keep track of its status.
+- Instead of using version control for your `terraform.tfstate` file, the terraform best practice is to use a remote backend to store the file.
+
+#### Using AWS S3
+- If you are already using Terraform with AWS, your best bet would be to use AWS S3 as your remote backend.
+    - AWS S3 is extremely durable, so losing your state file is nearly impossible
+    - AWS S3 supports encryption in transit and at rest, and it supports versioning, so if you ever need to roll back your changes, all of your older versions are available
+    - Storing a `terraform.tfstate` file in S3 would cost almost nothing.
+
+### Terraform Best Practices
+- Best practices are subjective and what works best for one company won’t work for another, These practices will generally keep you aware of the power of Terraform and the risks and rewards of running infrastructure as code
+- Ultimately, the implementation of a best practices culture at your company will lay the foundation for effective team communication, rapid issue resolution, and predictable deployments.
+- Terraform implementation should be done incrementally with all members of the team on board.
+- Terraform is not the answer for every company, especially a company that doesn’t want to use it. The risk of using it improperly is too great
+- Terraform has the best chance of succeeding at your company when it is used to address a specific pain point, and it performs that function well
+- https://www.youtube.com/watch?v=FnHP8TalGGA&t=250s
+
+### What do you think is the worst thing that can happen if Terraform isn’t implemented correctly?
+- In my opinion, the #1 worst thing that can happen is having your secrets accidentally exposed in your tfstate file or even worse your AWS config file in a public repo. Even though you are learners, you should start implementing the best practice of strong single-use passwords and multi-factor authentication. Once someone with bad intentions has your password, they will be off to the races trying to use it to get into other parts of your infrastructure.
+
+- AWS does scan public repos for secrets and notifies users when they have made such a mistake, but by that time, anything could have happened, and by anything, I mean a person may have provisioned quantum computers to mine bitcoin on your AWS account. Which brings me to another reminder to always set a billing alarm when you create an AWS account!
+
+![image](images/cand-c2-l4-summary.jpg)
+
+
