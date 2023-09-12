@@ -634,3 +634,12 @@ resource "aws_instance" "Udacity" {
 ![image](images/cand-c2-l4-summary.jpg)
 
 
+## Design for Security
+
+### Resources:
+- [AWS Architecture Center](https://aws.amazon.com/architecture/?cards-all.sort-by=item.additionalFields.sortDate&cards-all.sort-order=desc&awsf.content-type=*all&awsf.methodology=*all&awsf.tech-category=*all&awsf.industries=*all&awsf.business-category=*all)
+- [AWS Whitepapers and guides](https://aws.amazon.com/whitepapers/?whitepapers-main.sort-by=item.additionalFields.sortDate&whitepapers-main.sort-order=desc&awsf.whitepapers-content-type=*all&awsf.whitepapers-tech-category=*all&awsf.whitepapers-industries=*all&awsf.whitepapers-business-category=*all&awsf.whitepapers-global-methodology=*all)
+- [AWS Cloud Security](https://aws.amazon.com/security/?nc1=f_cc)
+- [AWS Developer Center](https://aws.amazon.com/developer/?developer-center-activities-cards.sort-by=item.additionalFields.startDateTime&developer-center-activities-cards.sort-order=asc)
+
+
