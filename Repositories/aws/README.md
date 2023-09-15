@@ -642,4 +642,3 @@ resource "aws_instance" "Udacity" {
 - [AWS Cloud Security](https://aws.amazon.com/security/?nc1=f_cc)
 - [AWS Developer Center](https://aws.amazon.com/developer/?developer-center-activities-cards.sort-by=item.additionalFields.startDateTime&developer-center-activities-cards.sort-order=asc)
 
-
