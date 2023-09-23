@@ -642,3 +642,148 @@ resource "aws_instance" "Udacity" {
 - [AWS Cloud Security](https://aws.amazon.com/security/?nc1=f_cc)
 - [AWS Developer Center](https://aws.amazon.com/developer/?developer-center-activities-cards.sort-by=item.additionalFields.startDateTime&developer-center-activities-cards.sort-order=asc)
 
+
+### Restrict Access
+- https://www.youtube.com/watch?v=AEGcOUwX1H0
+
+
+### Security best practices for your VPC
+
+The following best practices are general guidelines and don’t represent a complete security solution. Because these best practices might not be appropriate or sufficient for your environment, treat them as helpful considerations rather than prescriptions.
+
+- When you add subnets to your VPC to host your application, create them in multiple Availability Zones. An Availability Zone is one or more discrete data centers with redundant power, networking, and connectivity in an AWS Region. Using multiple Availability Zones makes your production applications highly available, fault tolerant, and scalable. For more information, see Amazon VPC on AWS.
+- Use security groups to control traffic to EC2 instances in your subnets. For more information, see Security groups.
+- Use network ACLs to control inbound and outbound traffic at the subnet level. For more information, see Control traffic to subnets using network ACLs. https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html
+- Manage access to AWS resources in your VPC using AWS Identity and Access Management (IAM) identity federation, users, and roles. For more information, see Identity and access management for Amazon VPC.
+- Use VPC Flow Logs to monitor the IP traffic going to and from a VPC, subnet, or network interface. For more information, see VPC Flow Logs.
+- Use Network Access Analyzer to identify unintended network access to resources in our VPCs. For more information, see the Network Access Analyzer Guide.
+- Use AWS Network Firewall to monitor and protect your VPC by filtering inbound and outbound traffic. For more information, see the AWS Network Firewall Guide.
+
+### Access to Cloud Networks
+- https://www.youtube.com/watch?v=ySoY-TicvKI&t=364s
+
+#### Bastion Hosts
+Bastion hosts, or jump hosts, are set up in a public subnet to allow a user to login from either their home or office network, and subsequently access or jump to resources in private networks.
+
+#### Client VPN
+A secure tunnel between a user's local host and a VPN server in a cloud VPC. The tunnel is established using a VPN client running on the user's host.
+
+#### Sit- to-Site VPN
+A secure network tunnel between a local trusted network and the AWS VPC, using the AWS VPN service or other VPN product.
+
+#### Virtual Desktop
+A desktop deployed in a cloud VPC that can be used to run applications that need connectivity to resources in the VPC. A user would install a virtual desktop client on their local host to connect to and use the virtual desktop.
+
+#### Direct Connect
+A dedicated and private network link between a company's on-premise local network and an AWS Direct Connect location - enabling two way traffic between AWS resources and the local network.
+
+
+### Exercise: Designing an Architecture
+In this exercise, you will start with a simple reference architecture and use the design principles outlined in the lesson to improve the security posture of the environment.
+Refer to a simple reference architecture and use the design principles outlined in the lesson to improve the security posture of the environment.
+
+For your convenience we have provided a starter architecture diagram file in "draw.io" format. The file is available via AWS S3 and is named "cand-c3-l2-architecture-design.drawio".
+
+You may import this file into draw.io (or Lucidchart) and make the necessary updates.
+
+This environment contains the following components:
+
+- VPC with an internet gateway
+- Public subnet hosting a NAT gateway
+- Application instance Kubernetes cluster running our application containers in a private subnet.
+- RDS database - Postgres - deployed in a private subnet
+- Internet facing load balancer to accept web traffic (80 and 443) - deployed in a public subnet.
+- Security groups assigned to the load balancer, instances, and RDS database.
+
+Your assignment is to improve the architecture so that it meets the following requirements for security and access:
+
+- Developers need network connectivity to the Kubernetes cluster to manage on 6443. They do not need to login to any instances.
+- Application containers need connectivity to the database on Postgres port.
+- The data science team needs access to the database as well. They do not need access to the application cluster.
+- The applications will need to connect to an external service such as Mailgun. At this time, we don’t know Mailgun’s IP ranges or what other services the application will need to connect to.
+- We want to monitor network traffic from the application containers out to the internet.
+- All access needs to be the least privilege. Security group rules should be as specific as possible.
+- Team members do not have access to a corporate network.
+
+You may either complete a new version of the diagram or a writeup outlining each layer of security that you would incorporate into this design.
+Be sure to be specific about chosen tools and products and how they would help make this environment more secure.
+
+- https://www.youtube.com/watch?v=7jULQ4UKLQc&t=123s
+
+
+![image](images/14.-solution-image.png)
+
+
+### Glossary
+#### Key Pair
+A key pair consists of a public key and private key that authenticate and encrypt an SSH session. The public key can be hosted on cloud servers and the private key is held by the user. Only a user with the private key that corresponds to the public key will be able to authenticate to the SSH server.
+
+#### Privilege Access Management (PAM) Tool
+A privileged access management tool provides management of authentication, sessions, password storage, audit, and privilege escalation when it comes to logging into server infrastructure.
+
+#### AWS Systems Manager (SSM)
+The AWS Systems Manager service provides the ability to manage EC2 instances at the operating system level - including patching, command execution, automation, state management, inventory.
+
+#### Session Manager
+Session Manager is a feature within AWS Systems Manager which allows an authenticated IAM user or role the ability to start a terminal session on an EC2 instance.
+
+#### Open Vulnerability
+An exploitable vulnerability in the OS kernel, packages, or applications installed on an instance which could lead to a remote actor gaining unauthorized access.
+
+#### Immutability
+A deployment model where components do not undergo any changes from provisioning to deprovisioning.
+
+#### Immutable Instances
+Instances that are launched from pre-configured images and do not undergo any changes from deployment to deprovisioning.
+
+#### Configuration Management Tool
+Tools that can enforce operating system configuration state based on versioned code templates.
+
+#### Intrusion Detection System (IDS)
+A process that monitors system activity and identifies suspicious behaviour indicating that a server has been compromised.
+
+#### Security Information and Event Management (SIEM)
+Tools that aggregate system events and logs in order to provide historical and real-time analysis, correlation, dashboards, and alerting.
+
+#### Ingress
+In-bound network traffic that is entering your cloud environment from the outside.
+
+#### Egress
+Out-bound network traffic that is leaving your cloud environment.
+
+#### Internet Gateway
+Network component that is part of a VPC that facilitates out-bound and in-bound traffic to the internet.
+
+#### NAT Gateway
+A NAT Gateway is an AWS managed network component which allows instances in private subnets to connect to the internet but does not allow connection attempts from the internet to reach private instances.
+
+#### Proxy Layer (or Proxy Farm)
+A set of HTTP proxy servers designed to handle internet bound HTTP traffic. This solution provides additional visibility and control on which internet sites can be reached.
+
+#### VPN
+Extends a private network such as an AWS VPC to an on-premise LAN or a user’s local host. VPNs are encrypted tunnels that go over the internet.
+
+#### Direct Connect
+A dedicated and private network link between a company's on-premise local network and an AWS Direct Connect location - enabling two way traffic between AWS resources and the local network.
+
+#### Network ACL (NACL)
+Firewall construct in AWS which allows controls to be placed on VPC subnet network traffic.
+
+#### Security Group
+Firewall construct in AWS which allows controls to be placed on individual resources that are deployed in a VPC.
+
+#### Bastion Hosts
+Bastion hosts, or jump hosts, are set up in a public subnet to allow a user to login from either their home or office network, and subsequently access or jump to resources in private networks.
+
+#### Virtual Desktop Solution
+A desktop deployed in a cloud VPC that can be used to run applications that need connectivity to resources in the VPC. A user would install a virtual desktop client on their local host to connect to the virtual desktop.
+
+#### Client VPN
+A secure tunnel between a user's local host and a VPN server in a cloud VPC. The tunnel is established using a VPN client running on the user's host.
+
+#### Site-to-Site VPN
+A secure network tunnel between a local trusted network and the AWS VPC, using the AWS VPN service or other VPN product.
+
+#### Direct Connect
+A dedicated and private network link between a company's on-premise local network and an AWS Direct Connect location - enabling two way traffic between AWS resources and the local network.
+
