@@ -787,3 +787,123 @@ A secure network tunnel between a local trusted network and the AWS VPC, using t
 #### Direct Connect
 A dedicated and private network link between a company's on-premise local network and an AWS Direct Connect location - enabling two way traffic between AWS resources and the local network.
 
+## Protecting Data Stored in the Cloud
+
+https://www.youtube.com/watch?v=kZYVd0zKDPQ&t=1s
+
+https://www.youtube.com/watch?v=suQZ-2H4d-U&t=294s
+
+https://www.youtube.com/watch?v=zF2l6QVdJpE&t=573s
+
+### What We've Learned
+We highlighted methods to ensure data stored in cloud environments is protected from unauthorized access.
+We walked through how an application may use encryption keys to ensure that data is encrypted when written to disk or cloud storage.
+We took a closer look at the S3 service to understand common encryption methods and capabilities.
+We explored some of the options and capabilities for key management using the AWS key management service or KMS.
+Finally, you were able to put some of the concepts into practice to demonstrate how encryption keys can be managed and segregated, and utilized between two different sample applications.
+
+### Glossary
+#### AWS Encryption SDK
+Encryption libraries provided by AWS that an application can use to encrypt data prior to writing to storage. The SDK makes the process of using the AWS key management service seamless.
+
+#### Key Management Service (KMS)
+AWS service that allows provisioning, storage and management of master encryption keys. KMS also provides the ability to manage permissions pertaining to cryptographic actions on encryption keys.
+
+#### Client-Side Encryption
+With client-side encryption, the application code will handle cryptographic operations on the data prior to persisting to a given storage medium.
+
+#### Server-Side Encryption
+With server-side encryption, the storage service being used will handle cryptographic operations on the data while handling read and write operations. This process is transparent to the application which persists the data.
+
+#### Key Management Service (KMS)
+AWS service that allows provisioning, storage and management of master encryption keys. KMS also provides the ability to manage permissions pertaining to cryptographic actions on encryption keys.
+
+#### Customer Master Key (CMK)
+The customer master key is the master encryption key that will be used to encrypt and store underlying data encryption keys in the KMS service. Other services or applications will select a CMK to use for their cryptographic operations.
+
+#### AWS-Managed CMK
+AWS-managed customer master keys are provisioned, rotated and managed by AWS. AWS will provision a new master key for each AWS service in the AWS account at the time the service needs to start encrypting data. These keys are not available to use by your applications for client-side encryption. You may not change or assign permissions on these keys.
+
+#### Customer-Managed CMK
+Customer-managed master keys are provisioned and managed by the customer (you). Once you provision a key, you may use that key with any AWS services or applications.
+
+You can manage permissions on customer managed CMKs to control which IAM users or roles can manage or use the encryption keys. Permissions to use the keys can also be granted to AWS services and other AWS accounts.
+
+#### Default Encryption
+A configuration setting on an AWS resource, such as an S3 bucket, designating that the storage as a whole, or all objects written, will be encrypted by the service being used (e.g. S3).
+
+#### Key Rotation
+The process of changing data encryption keys used for cryptographic operations on a periodic basis.
+
+
+## Defensive Security in the Cloud
+
+### You have learned how to:
+
+Identify misconfigurations that can lead to vulnerabilities
+Identify and guard against malicious activity
+Design a deployment pipeline that ensures that security practices are implemented early on.
+
+### Glossary
+Threat Landscape
+Identify potential attack vectors and quantify potential exploitation and worst case blast radius.
+
+Shift Left
+Identifying security vulnerabilities and misconfigurations in the early phases of an application or environment's lifecycle.
+
+Public Facing
+Any resources which are accessible from the internet, such as web applications, public facing infrastructure, or the AWS console and API.
+
+OWASP Top 10
+A widely accepted set of vulnerabilities which can lead to exploitation of web applications.
+
+Infrastructure as Code (IaC)
+Code that is developed to define cloud infrastructure, operating system, and container configuration. Code is version controlled and follows the similar principles for changes and updates as application feature code.
+
+CloudFormation
+AWS native service for deploying services with infrastructure as code. CloudFormation templates defined in json or yaml can be deployed using the CloudFormation service.
+
+Terraform
+Popular infrastructure as code language from HashiCorp. Supports many different cloud providers in addition to AWS.
+
+DockerFile
+Definition specifying how a docker image will be built and configured.
+
+Static Scanning
+One-time (or scheduled) that will run and provide a set of findings.
+
+Dynamic Scanning
+Continuous monitoring that is designed to catch changes to configuration or other suspicious activity in real-time.
+
+DevOps Pipeline
+A set of processes and tools to build, deploy, and update application environments. Pipelines include build of application artifacts, docker and VM images, scanning and automated testing, deployment orchestration of infrastructure and application artifacts.
+
+Security Information and Event Management (SIEM)
+The process of collecting and combining security activity and events from cloud providers, servers, and applications for further analysis.
+
+AWS CloudTrail
+AWS CloudTrail is the source of activity logging within an AWS account. Any API activity, console usage, cross account access etc will be recorded in CloudTrail.
+
+VPC Flow logs
+VPC flow logs provide insight into network activity in an AWS VPC
+
+DNS logs
+Logs generated by a DNS such as Route53 providing DNS query activity.
+
+AWS GuardDuty
+AWS GuardDuty can monitor CloudTrail, DNS, and VPC flow logs to identify suspicious activity in the environment
+
+AWS CloudWatch
+AWS native service that provides monitoring, alarming, and dashboarding capabilities on metrics and logs.
+
+Web Application Firewall (WAF)
+A web application firewall is used to defend an application that may contain vulnerabilities from exploitation.
+
+WAF Rules
+Logic that will dictate what type of requests to allow or block
+
+Managed Rules
+Sets of rules provided and managed by third parties or AWS. Different rule sets are designed for specific purposes.
+
+AWS Firewall Manager
+Control WAF settings and Security Groups for all AWS accounts from a central management interface.
