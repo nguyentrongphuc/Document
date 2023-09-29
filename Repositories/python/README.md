@@ -180,12 +180,56 @@ Documentation is used to make your code easier to understand and use. Functions 
 > with open('my_path/my_file.txt', 'r') as f:
 >     file_data = f.read()
 > 
+>
+> def create_cast_list(filename):
+>    cast_list = []
+>    with open(filename) as f:
+>        for line in f:
+>            name = line.split(",")[0]
+>            cast_list.append(name)
+>
+>    return cast_list
+>
+> cast_list = create_cast_list('flying_circus_cast.txt')
+> 
+> for actor in cast_list:
+>    print(actor)
+>
 >```
 
 ## The Standard Library
 https://pymotw.com/3/
 
+## IPython
+There is actually an awesome alternative to the default Python interactive interpreter, IPython, which comes with many additional features.
+
+- tab completion
+- ? for details about an object
+- ! to execute system shell commands
+- syntax highlighting!
+and a lot more you can find here! https://ipython.org/ipython-doc/3/interactive/tutorial.html
 
 
 # References
 - document: document: https://peps.python.org/pep-0008/
+
+# Useful Third-Party Packages
+- Being able to install and import third party libraries is useful, but to be an effective programmer you also need to know what libraries are available for you to use. People typically learn about useful new libraries from online recommendations or from colleagues. If you're a new Python programmer you may not have many colleagues, so to get you started here's a list of packages that are popular with engineers at Udacity.
+
+- IPython - A better interactive Python interpreter https://ipython.org
+- requests - Provides easy to use methods to make web requests. Useful for accessing web APIs.
+- Flask - a lightweight framework for making web applications and APIs.
+- Django - A more featureful framework for making web applications. Django is particularly good for designing complex, content heavy, web applications.
+- Beautiful Soup - Used to parse HTML and extract information from it. Great for web scraping. https://www.crummy.com/software/BeautifulSoup/
+- pytest - extends Python's builtin assertions and unittest module. https://docs.pytest.org/en/7.4.x/
+- PyYAML - For reading and writing YAML files. https://pyyaml.org/wiki/PyYAML
+- NumPy - The fundamental package for scientific computing with Python. It contains among other things a powerful N-dimensional array object and useful linear algebra capabilities. https://numpy.org
+- pandas - A library containing high-performance, data structures and data analysis tools. In particular, pandas provides dataframes! https://pandas.pydata.org
+- Matplotlib - a 2D plotting library which produces publication quality figures in a variety of hardcopy formats and interactive environments. https://matplotlib.org
+- ggplot - Another 2D plotting library, based on R's ggplot2 library. https://pypi.org/project/ggplot/
+- Pillow - The Python Imaging Library adds image processing capabilities to your Python interpreter. https://python-pillow.org
+- pyglet - A cross-platform application framework intended for game development.  https://pyglet.org
+- Pygame - A set of Python modules designed for writing games. https://www.pygame.org/news
+- pytz - World Timezone Definitions for Python - https://pytz.sourceforge.net
+
+
