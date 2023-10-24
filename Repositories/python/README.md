@@ -53,6 +53,13 @@ pip3 --version
 
 ## Data Structure
 
+- Mutable data types can be changed after they are created. e.g. list, dict, set
+    + are passed into functions as a pointer to the original object.
+    + changes that happen to this pointer within the function change the original object.
+- Immutable data types can't be changed after they are created. e.g. bool, int, float, tuple, str
+    + are passed into functions as a copy of the original object
+    + changes that happen to this copy within the function don't affect the original object
+
 >```python
 > Data Structure    |   Ordered    |    Mutable |   Constructor     |   Example
 > ------------------+--------------+------------+-------------------+-----------------------
@@ -208,6 +215,40 @@ There is actually an awesome alternative to the default Python interactive inter
 - ! to execute system shell commands
 - syntax highlighting!
 and a lot more you can find here! https://ipython.org/ipython-doc/3/interactive/tutorial.html
+
+## Inheritance
+
+```python
+class Clothing:
+    def __init__(self, color, size, style, price):
+        self.color = color
+        self.size = size
+        self.style = style
+        self.price = price
+
+    def change_price(self, price):
+        self.price = price
+
+    def calculate_discount(self, discount):
+        return self.price * (1 - discount)
+
+class Shirt(Clothing):
+    def __init__(self, color, size, style, price, long_or_short):
+        Clothing.__init__(self, color, size, style, price)
+        self.long_or_short = long_or_short
+
+    def double_price(self):
+        self.price = 2*self.price
+
+class Pants(Clothing):
+    def __init__(self, color, size, style, price, waist):
+        Clothing.__init__(self, color, size, style, price)
+        self.waist = waist
+
+    def calculate_discount(self, discount):
+        return self.price * (1 - discount / 2)
+```
+
 
 
 # References
