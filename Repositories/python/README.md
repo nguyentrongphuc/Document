@@ -76,7 +76,7 @@ pip3 --version
 > print(months[0]) # January
 > print(months[1]) # February
 > print(months[7]) # August
-> print(months[-1]) # December
+> print(months[-1]) # December```
 > print(months[25]) # IndexError: list index out of range
 > 
 > q3 = months[6:9]
@@ -249,6 +249,23 @@ class Pants(Clothing):
         return self.price * (1 - discount / 2)
 ```
 
+
+# Anaconda/ Miniconda/ Pip
+## What is Anaconda Distribution?
+- Anaconda is a program to manage (install, upgrade, or uninstall) packages and environments to use with Python. It's simple to install packages with Anaconda and create virtual environments to work on multiple projects conveniently.
+
+- Even if you already have Python installed, it will be beneficial to use Anaconda/Miniconda because:
+    + Anaconda comes with a bunch of data science packages; you'll be all set to start working with data.
+    + Using conda to manage your packages and environments will reduce future issues dealing with the various libraries you'll be using.
+- `conda install PACKAGENAME`
+- The `conda` and `pip` both are the Python package managers. Package managers are used to installing libraries and other software on your computer. pip is the default package manager for Python libraries, whereas conda focuses only on the packages that are available from the Anaconda distribution.
+
+## Why do you need a Virtual Environment?
+- Each virtual environment remains isolated from other virtual environments, and the default “system” environment. Environments allow you to separate and isolate the packages you are using for different projects. Often you’ll be working with code that depends on different versions of some library. For example, you could have code that uses new features in Numpy, or code that uses old features that have been removed. It’s practically impossible to have two versions of Numpy installed at once. Instead, you should make an environment for each version of Numpy then work in the appropriate environment for the project.
+
+- This issue also happens a lot when dealing with Python 2 and Python 3. You might be working with old code that doesn’t run in Python 3 and new code that doesn’t run in Python 2. Having both installed can lead to a lot of confusion and bugs. It’s much better to have separate environments.
+
+- You can also export the list of packages in an environment to a file, then include that file with your code. This allows other people to easily load all the dependencies for your code. Pip has similar functionality with `pip freeze > requirements.txt`
 
 
 # References
