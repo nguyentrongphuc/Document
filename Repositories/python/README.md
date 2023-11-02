@@ -267,6 +267,31 @@ class Pants(Clothing):
 
 - You can also export the list of packages in an environment to a file, then include that file with your code. This allows other people to easily load all the dependencies for your code. Pip has similar functionality with `pip freeze > requirements.txt`
 
+## Installing Anaconda
+Anaconda is available for Windows, Mac OS X, and Linux. Follow the links below to get started:
+
+- Download the installer from https://www.anaconda.com/download/. Choose the Python 3.6 or higher version, and the appropriate 64/32-bit installer. If you already have Python installed on your computer, this won't break anything. Instead, the default Python used by your scripts and programs will be the one that comes with Anaconda.
+- Refer the installation instructions [here](https://docs.anaconda.com/free/anaconda/install/)
+- Verify the installation [here](https://docs.anaconda.com/free/anaconda/install/verify-install/) for your respective OS
+
+After installation, you’re automatically in the default conda environment with all packages installed which you can see below. You can check out your own install by entering the following command into your terminal.
+
+`conda list`
+
+## List of Applications Installed with Anaconda
+As we read on the previous page, the following packages will get installed with Anaconda:
+
+- **Anaconda Navigator** - a GUI for managing your environments and packages
+- `conda` - a command-line utility
+- **Python** - The latest version of Python gets installed as an individual package.
+- **Anaconda Prompt** - [Only for Windows] a terminal where you can use the command-line interface to manage your environments and packages
+- A bunch of applications, such as **Spyder**. It is an IDE geared toward scientific development. In total, over 160 scientific packages and their dependencies are also installed.
+To avoid errors later, it's best to update all the packages in the default environment. Open the Terminal/ Anaconda Prompt application. In the prompt, run the following commands:
+
+```Terminal
+conda upgrade conda
+conda upgrade --all
+```
 
 # References
 - document: document: https://peps.python.org/pep-0008/
