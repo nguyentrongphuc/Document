@@ -293,6 +293,22 @@ conda upgrade conda
 conda upgrade --all
 ```
 
+
+## How to Install pip Package Manager
+If you have successfully installed Anaconda/Miniconda, possibly you will have conda (and pip) automatically installed on your system. If pip is not there, we recommend you install the pip as well because you will be able to run pip commands only after installing it.
+
+```Terminal 
+# Check if pip is already installed, by running this command on Terminal/Anaconda Prompt
+pip --version
+
+# Once you have conda installed, run the command below on Terminal/Anaconda Prompt
+conda install pip
+```
+
+**Update Note** 
+In newer version of Anaconda/Miniconda, both pip and conda package managers are included by default, so you do not need to install them separately.
+
+
 # References
 - document: document: https://peps.python.org/pep-0008/
 
