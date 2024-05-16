@@ -54,3 +54,25 @@ https://www.youtube.com/watch?v=1BLFuSXfgMY
 
 https://www.youtube.com/watch?v=wXDy3P6F_P8
 
+# Calculus in Neural Networks
+
+## What is a Neural Network
+
+https://www.youtube.com/watch?v=hYB4ku0kmW8
+
+## Gradient Descent
+
+https://www.youtube.com/watch?v=f8PYXDsSBpM
+
+## Backpropagation
+
+https://www.youtube.com/watch?v=Wr5qCQ48t8E
+
+## Backpropagation and Calculus
+
+https://www.youtube.com/watch?v=_d52fwoXXd4
+
+## Gradient Descent- Example
+
+https://www.youtube.com/watch?v=_K7lzXqyj8I
+
