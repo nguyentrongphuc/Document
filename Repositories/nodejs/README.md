@@ -1,9 +1,3 @@
-# SQLAlchemy 
-
-- Features function-based query construction: allows SQL clauses to be built via Python functions and expressions.
-- Avoid writing raw SQL. It generates SQL and Python code for you to access tables, which leads to less database-related overhead in terms of the volume of code you need to write overall to interact with your models.
-- Moreover, you can avoid sending SQL to the database on every call. The SQLAlchemy ORM library features automatic caching, caching collections, and references between objects once initially loaded.
-- python document: https://peps.python.org/pep-0008/
 
 ## 1. What is Node?
 Nodejs itself is not a programming language but rather a runtime that allows you to run javascript on a server (you see when javascript first came around in the 1990s) - we saw the inital release of node.js in 2009 now up until this time it was impossible to write javascript code on the server.
@@ -35,18 +29,6 @@ eventEmitter.on('lunch' , () => {
 
 eventEmitter.emit('lunch');
 
-// ---------------------
-// sync === blocking
-const { readFile, readFileSync } = require('fs');
-const txt = readFileSync('./hello.txt', 'utf8');
-console.log(txt);
-
-// assync === non-blocking
-readFile('./hello.txt', 'utf8', (err, txt) => {
-    console.log(txt);
-})
-console.log('do this ASAP');
-
 ```
 
 ## 6. File System
@@ -73,7 +55,6 @@ async function hello() {
 
 ## 7. Modules
 https://nodejs.org/api/modules.html
-
 
 
 ## 8. Build & Deploy 
